@@ -1,4 +1,4 @@
-package edu.usal.negocio;
+package edu.usal.negocio.dominio;
 
 public class Provincia {
 	
