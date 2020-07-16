@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\manul\Desktop\USAL\2020\Programacion avanzada\TRABAJOS\TP ANUAL\Trabajo Practico Anual-PA\.metadata\.plugins\org.eclipse.jdt.core
+1067094681.index
+2290619744.index
