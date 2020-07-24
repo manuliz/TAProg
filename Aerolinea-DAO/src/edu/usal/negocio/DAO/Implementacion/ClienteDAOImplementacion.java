@@ -10,9 +10,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.usal.Util.propertiesUtil;
 import edu.usal.negocio.DAO.Interfaces.ClienteDAO;
-import edu.usal.negocio.dominio.Cliente;
-import edu.usal.util.propertiesUtil;
+import edu.usal.negocio.Dominio.Cliente;
 
 public class ClienteDAOImplementacion implements ClienteDAO{
 	
@@ -22,6 +22,10 @@ public class ClienteDAOImplementacion implements ClienteDAO{
 	private FileInputStream fis;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
+	
+	public ClienteDAOImplementacion() {
+		properties = new propertiesUtil();
+	}
 	
 	private void guardar(List<Cliente> lista) throws IOException, FileNotFoundException {
 		this.arch = new File(properties.obtenerDirecCliente(), properties.obtenerNomArchCliente());
@@ -121,6 +125,5 @@ public class ClienteDAOImplementacion implements ClienteDAO{
 		}
 		
 	}
-	
 
 }
