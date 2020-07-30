@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import edu.usal.negocio.DAO.Implementacion.ClienteDAOImplementacion;
+import edu.usal.negocio.DAO.Implementacion.LineasAereasDAOImplementacion;
 import edu.usal.negocio.DAO.Implementacion.VuelosDAOImplementacion;
 import edu.usal.negocio.DAO.Interfaces.ClienteDAO;
+import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
 import edu.usal.negocio.DAO.Interfaces.VuelosDAO;
 import edu.usal.negocio.Dominio.Aeropuerto;
 import edu.usal.negocio.Dominio.Alianzas;
@@ -34,7 +36,7 @@ public static void main(String[] args) {
 		Aeropuerto AE11 = new Aeropuerto(1, "BSAS", "JFK", pais1, prov1);
 		Aeropuerto AE12 = new Aeropuerto(2, "CATAMARCA", "CATA", pais1, prov1);
 		Vuelos v1 = new Vuelos(1, 2223, 1244, "12hs", AE11, AE12);
-//		LineasAereas la1 = new LineasAereas(Alianzas.Airlink, 1, "ZALALLALA", v1);
+		LineasAereas la1 = new LineasAereas(Alianzas.Airlink, 1, "ZALALLALA", v1);
 //		Pasaporte pasa1 = new Pasaporte(1, "40643145", "Albertito fernandu", "Argentina", hoy, hoy );
 //		Telefono telef1 = new Telefono(1,"1132645209", "1132645209", "1234567890");
 //		PasajeroFrecuente pasajfrec1 = new PasajeroFrecuente(1,"321", "Discapacitado", la1, Alianzas.Air_China);
@@ -44,11 +46,11 @@ public static void main(String[] args) {
 		
 		//CLIENTE 2
 		Pais pais2 = new Pais(2, "Russia");
-		Provincia prov2 = new Provincia(2, "Moscow");
+		Provincia prov2 = new Provincia(2, "Moscow");		
 		Aeropuerto AE21 = new Aeropuerto(2, "ASDASD", "ASDCC", pais2, prov2);
 		Aeropuerto AE22 = new Aeropuerto(2, "CASARACA", "CUTU", pais2, prov2);
 		Vuelos v2 = new Vuelos(2, 11231, 231, "23hs", AE21, AE22);
-//		LineasAereas la2 = new LineasAereas(Alianzas.Aeromexico, 2, "LAZAZAZA", v2);
+		LineasAereas la2 = new LineasAereas(Alianzas.Dragonair, 2, "iiiiLAZuZuZA", v2);
 //		Pasaporte pasa2 = new Pasaporte(2, "40608090", "Bladimir flor de putin", "Russia", hoy, hoy );
 //		Telefono telef2 = new Telefono(2,"1133445566", "1122334455", "0987654321");
 //		PasajeroFrecuente pasajfrec2 = new PasajeroFrecuente(2,"123", "Tarado", la2, Alianzas.Air_China);
@@ -140,7 +142,49 @@ public static void main(String[] args) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-				
+		
+		LineasAereasDAO lineas = new LineasAereasDAOImplementacion();
+		
+//		try {
+//			lineas.crearLineaAerea(la1);
+//			lineas.crearLineaAerea(la2);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			lineas.actualizarLineaAerea(la2);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		try {
+			lineas.eliminarLineaAerea(la1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		try {
+//			LineasAereas linea1 = lineas.obtenerLineaAerea(2);
+//			System.out.println(linea1.toString());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		try {
+			List<LineasAereas> lista1 = lineas.obtenerLineasAereas();
+			for(LineasAereas a : lista1) {
+				System.out.println(a.toString());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 }

@@ -1,15 +1,17 @@
 package edu.usal.negocio.DAO.Interfaces;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import edu.usal.negocio.Dominio.LineasAereas;
 
 public interface LineasAereasDAO {
 	
-	LineasAereas obtenerLineaAerea(int idLineaAerea);
-	List<LineasAereas> obtenerLineasAereas();
-	void crearLineaAerea(LineasAereas lineasAereas);
-	void actualizarLineaAerea(LineasAereas lineasAereas);
-	void eliminarLineaAerea(LineasAereas lineasAereas);
+	LineasAereas obtenerLineaAerea(int idLineaAerea) throws FileNotFoundException, IOException;
+	List<LineasAereas> obtenerLineasAereas() throws FileNotFoundException, IOException;
+	void crearLineaAerea(LineasAereas lineasAereas) throws FileNotFoundException, IOException;
+	void actualizarLineaAerea(LineasAereas lineasAereas) throws FileNotFoundException, IOException;
+	void eliminarLineaAerea(LineasAereas lineasAereas) throws FileNotFoundException, IOException;
 
 }
