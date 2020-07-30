@@ -160,12 +160,12 @@ public static void main(String[] args) {
 //			e.printStackTrace();
 //		}
 		
-		try {
-			lineas.eliminarLineaAerea(la1);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			lineas.eliminarLineaAerea(la1);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 //		try {
 //			LineasAereas linea1 = lineas.obtenerLineaAerea(2);
