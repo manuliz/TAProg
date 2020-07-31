@@ -42,6 +42,36 @@ public Properties properties = obtenerProperties();
 	public String obtenerNomLineasAereas() {
 		return properties.getProperty("nomArchLineasAereas");
 	}
-
-
+	
+	public String obtenerDirecPais() {
+		return properties.getProperty("direcPais");
+	}
+	
+	public String obtenerNomArchPais() {
+		return properties.getProperty("nomArchPais");
+	}
+	
+	public String obtenerDirecAerolineas() {
+		return properties.getProperty("direcAerolineas");
+	}
+	
+	public String obtenerNomArchAerolineas() {
+		return properties.getProperty("nomArchAerolineas");
+	}
+	
+	public String obtenerDirecAlianzas() {
+		return properties.getProperty("direcAlianzas");
+	}
+	
+	public String obtenerNomArchAlianzas() {
+		return properties.getProperty("nomArchAlianzas");
+	}
+	
+	public String obtenerDirecProvincias() {
+		return properties.getProperty("direcProvincias");
+	}
+	
+	public String obtenerNomArchProvincias() {
+		return properties.getProperty("nomArchProvincias");
+	}
 }

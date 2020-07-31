@@ -8,6 +8,10 @@ public class Pais implements Serializable{
 	private int idPais;
 	private String nombrePais;
 	
+	public Pais() {
+		
+	}
+	
 	public Pais(int idPais, String nombrePais) {
 		super();
 		this.idPais = idPais;

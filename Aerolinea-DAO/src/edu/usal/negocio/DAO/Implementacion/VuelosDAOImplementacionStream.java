@@ -15,7 +15,7 @@ import edu.usal.Util.propertiesUtil;
 import edu.usal.negocio.DAO.Interfaces.VuelosDAO;
 import edu.usal.negocio.Dominio.Vuelos;
 
-public class VuelosDAOImplementacion implements VuelosDAO{
+public class VuelosDAOImplementacionStream implements VuelosDAO{
 	
 	private File arch;
 	private ObjectInputStream ois;
@@ -24,7 +24,7 @@ public class VuelosDAOImplementacion implements VuelosDAO{
 	private FileOutputStream fos;
 	private propertiesUtil properties;
 	
-	public VuelosDAOImplementacion () {
+	public VuelosDAOImplementacionStream () {
 		properties = new propertiesUtil();
 	}
 	

@@ -14,7 +14,7 @@ import edu.usal.Util.propertiesUtil;
 import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
 import edu.usal.negocio.Dominio.LineasAereas;
 
-public class LineasAereasDAOImplementacion implements LineasAereasDAO{
+public class LineasAereasDAOImplementacionStream implements LineasAereasDAO{
 	
 	private File arch;
 	private ObjectInputStream ois;
@@ -25,7 +25,7 @@ public class LineasAereasDAOImplementacion implements LineasAereasDAO{
 	
 	
 	
-	public LineasAereasDAOImplementacion() {
+	public LineasAereasDAOImplementacionStream() {
 		super();
 		properties = new propertiesUtil();
 	}

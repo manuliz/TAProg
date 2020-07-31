@@ -8,6 +8,10 @@ public class Provincia implements Serializable{
 	private int idProvincia;
 	private String nombreProvincia;
 	
+	public Provincia() {
+		
+	}
+	
 	public Provincia(int idProvincia, String nombreProvincia) {
 		super();
 		this.idProvincia = idProvincia;

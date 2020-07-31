@@ -14,7 +14,7 @@ import edu.usal.Util.propertiesUtil;
 import edu.usal.negocio.DAO.Interfaces.ClienteDAO;
 import edu.usal.negocio.Dominio.Cliente;
 
-public class ClienteDAOImplementacion implements ClienteDAO{
+public class ClienteDAOImplementacionStream implements ClienteDAO{
 	
 	private propertiesUtil properties;
 	private File arch;
@@ -23,7 +23,7 @@ public class ClienteDAOImplementacion implements ClienteDAO{
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	
-	public ClienteDAOImplementacion() {
+	public ClienteDAOImplementacionStream() {
 		properties = new propertiesUtil();
 	}
 	
