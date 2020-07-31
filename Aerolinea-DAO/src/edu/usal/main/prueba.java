@@ -7,9 +7,11 @@ import java.util.List;
 
 import edu.usal.negocio.DAO.Implementacion.ClienteDAOImplementacionStream;
 import edu.usal.negocio.DAO.Implementacion.LineasAereasDAOImplementacionStream;
+import edu.usal.negocio.DAO.Implementacion.PaisDAOImplementacionString;
 import edu.usal.negocio.DAO.Implementacion.VuelosDAOImplementacionStream;
 import edu.usal.negocio.DAO.Interfaces.ClienteDAO;
 import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
+import edu.usal.negocio.DAO.Interfaces.PaisDAO;
 import edu.usal.negocio.DAO.Interfaces.VuelosDAO;
 import edu.usal.negocio.Dominio.Aeropuerto;
 import edu.usal.negocio.Dominio.Alianzas;
@@ -178,6 +180,29 @@ public static void main(String[] args) {
 //		try {
 //			List<LineasAereas> lista1 = lineas.obtenerLineasAereas();
 //			for(LineasAereas a : lista1) {
+//				System.out.println(a.toString());
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		//----------------------------------PARTE STRING----------------------------------------
+		
+		PaisDAO pais = new PaisDAOImplementacionString();
+		
+		try {
+			Pais pai = pais.obtenerPais("Argentina");
+			System.out.println(pai.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		try {
+//			List<Pais> lispa = pais.obtenerPaises();
+//			for(Pais a : lispa) {
 //				System.out.println(a.toString());
 //			}
 //		} catch (IOException e) {

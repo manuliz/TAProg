@@ -44,7 +44,7 @@ public class PaisDAOImplementacionString implements PaisDAO{
 	public Pais obtenerPais(String nomPais) throws FileNotFoundException, IOException {
 		List<Pais> lista1 = this.obtenerPaises();
 		for(Pais a : lista1) {
-			if(a.getNombrePais().equals(nomPais)) {
+			if(a.getNombrePais().equalsIgnoreCase(nomPais)) {
 				return a;
 			}
 		}
