@@ -19,56 +19,32 @@ public Properties properties = obtenerProperties();
 		return properties;
 	}
 	
-	public String obtenerDirecCliente() {
-		return properties.getProperty("direcCliente");
+	public String obtenerDirecArchivos() {
+		return properties.getProperty("direcArchivos");
 	}
 	
 	public String obtenerNomArchCliente() {
 		return properties.getProperty("nomArchCliente");
 	}
 	
-	public String obtenerDirecVuelos() {
-		return properties.getProperty("direcVuelos");
-	}
-	
 	public String obtenerNomArchVuelos() {
 		return properties.getProperty("nomArchVuelos");
-	}
-	
-	public String obtenerDirecLineasAereas() {
-		return properties.getProperty("direcLineasAereas");
 	}
 	
 	public String obtenerNomLineasAereas() {
 		return properties.getProperty("nomArchLineasAereas");
 	}
 	
-	public String obtenerDirecPais() {
-		return properties.getProperty("direcPais");
-	}
-	
 	public String obtenerNomArchPais() {
 		return properties.getProperty("nomArchPais");
-	}
-	
-	public String obtenerDirecAerolineas() {
-		return properties.getProperty("direcAerolineas");
 	}
 	
 	public String obtenerNomArchAerolineas() {
 		return properties.getProperty("nomArchAerolineas");
 	}
 	
-	public String obtenerDirecAlianzas() {
-		return properties.getProperty("direcAlianzas");
-	}
-	
 	public String obtenerNomArchAlianzas() {
 		return properties.getProperty("nomArchAlianzas");
-	}
-	
-	public String obtenerDirecProvincias() {
-		return properties.getProperty("direcProvincias");
 	}
 	
 	public String obtenerNomArchProvincias() {

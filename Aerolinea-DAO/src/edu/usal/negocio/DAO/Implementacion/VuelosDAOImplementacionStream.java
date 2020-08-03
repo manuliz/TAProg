@@ -29,7 +29,7 @@ public class VuelosDAOImplementacionStream implements VuelosDAO{
 	}
 	
 	private void guardar(List<Vuelos> lista1) throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecVuelos(), properties.obtenerNomArchVuelos());
+		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchVuelos());
 		this.fos = new FileOutputStream(arch, false);
 		this.oos = new ObjectOutputStream(fos);
 		oos.writeObject(lista1);
@@ -50,11 +50,11 @@ public class VuelosDAOImplementacionStream implements VuelosDAO{
 
 	@Override
 	public List<Vuelos> obtenerVuelos() throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecVuelos(), properties.obtenerNomArchVuelos());
+		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchVuelos());
 		if(!arch.exists()) {
-			arch = new File(properties.obtenerDirecVuelos());
+			arch = new File(properties.obtenerDirecArchivos());
 			arch.mkdir();
-			arch = new File(properties.obtenerDirecVuelos());
+			arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchVuelos());
 			arch.createNewFile();
 			
 			return new ArrayList<Vuelos>();

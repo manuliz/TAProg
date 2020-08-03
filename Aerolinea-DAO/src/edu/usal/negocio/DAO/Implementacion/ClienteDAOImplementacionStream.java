@@ -28,7 +28,7 @@ public class ClienteDAOImplementacionStream implements ClienteDAO{
 	}
 	
 	private void guardar(List<Cliente> lista) throws IOException, FileNotFoundException {
-		this.arch = new File(properties.obtenerDirecCliente(), properties.obtenerNomArchCliente());
+		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchCliente());
 		this.fos = new FileOutputStream(this.arch, false);
 		this.oos = new ObjectOutputStream(this.fos);
 		oos.writeObject(lista);
@@ -49,12 +49,12 @@ public class ClienteDAOImplementacionStream implements ClienteDAO{
 
 	@Override
 	public List obtenerClientes() throws IOException, FileNotFoundException {
-		this.arch = new File (properties.obtenerDirecCliente(), properties.obtenerNomArchCliente());
+		this.arch = new File (properties.obtenerDirecArchivos(), properties.obtenerNomArchCliente());
 		if(!arch.exists()) {
 			System.out.println("No existe el archivo de clientes, se crea un archivo nuevo");
-			arch = new File(properties.obtenerDirecCliente());
+			arch = new File(properties.obtenerDirecArchivos());
 			arch.mkdir();
-			arch = new File(properties.obtenerDirecCliente(),properties.obtenerNomArchCliente());
+			arch = new File(properties.obtenerDirecArchivos(),properties.obtenerNomArchCliente());
 			arch.createNewFile();
 			
 			return new ArrayList<Cliente>();

@@ -31,7 +31,7 @@ public class LineasAereasDAOImplementacionStream implements LineasAereasDAO{
 	}
 
 	private void guardar(List<LineasAereas> lista1) throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecLineasAereas(), properties.obtenerNomLineasAereas());
+		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomLineasAereas());
 		this.fos = new FileOutputStream(arch, false);
 		this.oos = new ObjectOutputStream(fos);
 		oos.writeObject(lista1);
@@ -52,11 +52,11 @@ public class LineasAereasDAOImplementacionStream implements LineasAereasDAO{
 
 	@Override
 	public List<LineasAereas> obtenerLineasAereas() throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecLineasAereas(), properties.obtenerNomLineasAereas());
+		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomLineasAereas());
 		if(!arch.exists()) {
-			arch = new File(properties.obtenerDirecLineasAereas());
+			arch = new File(properties.obtenerDirecArchivos());
 			arch.mkdir();
-			arch = new File(properties.obtenerDirecLineasAereas(), properties.obtenerNomLineasAereas());
+			arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomLineasAereas());
 			arch.createNewFile();
 			
 			return new ArrayList<LineasAereas>();

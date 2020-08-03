@@ -3,15 +3,19 @@ package edu.usal.main;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 import edu.usal.negocio.DAO.Implementacion.ClienteDAOImplementacionStream;
 import edu.usal.negocio.DAO.Implementacion.LineasAereasDAOImplementacionStream;
 import edu.usal.negocio.DAO.Implementacion.PaisDAOImplementacionString;
+import edu.usal.negocio.DAO.Implementacion.ProvinciaDAOImplementacionString;
 import edu.usal.negocio.DAO.Implementacion.VuelosDAOImplementacionStream;
 import edu.usal.negocio.DAO.Interfaces.ClienteDAO;
 import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
 import edu.usal.negocio.DAO.Interfaces.PaisDAO;
+import edu.usal.negocio.DAO.Interfaces.ProvinciaDAO;
 import edu.usal.negocio.DAO.Interfaces.VuelosDAO;
 import edu.usal.negocio.Dominio.Aeropuerto;
 import edu.usal.negocio.Dominio.Alianzas;
@@ -190,26 +194,20 @@ public static void main(String[] args) {
 		
 		//----------------------------------PARTE STRING----------------------------------------
 		
-		PaisDAO pais = new PaisDAOImplementacionString();
+		ProvinciaDAO prov = new ProvinciaDAOImplementacionString();
+		
 		
 		try {
-			Pais pai = pais.obtenerPais("Argentina");
-			System.out.println(pai.toString());
+			Hashtable<Integer, String> hashprov = prov.obtenerProvincias();
+			Enumeration key = hashprov.keys();
+			Enumeration valor = hashprov.elements();
+			while(key.hasMoreElements() && valor.hasMoreElements()) {
+				System.out.println(key.nextElement());
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-//		try {
-//			List<Pais> lispa = pais.obtenerPaises();
-//			for(Pais a : lispa) {
-//				System.out.println(a.toString());
-//			}
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		
+	
 	}
 }
