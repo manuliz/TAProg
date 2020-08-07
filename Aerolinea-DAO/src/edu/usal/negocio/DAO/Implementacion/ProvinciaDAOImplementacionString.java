@@ -21,6 +21,7 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 	private File arch;
 	private propertiesUtil properties;
 	private Scanner scan;
+	
 
 	public ProvinciaDAOImplementacionString() {
 		this.properties = new propertiesUtil();
@@ -31,15 +32,16 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 	public Hashtable<Integer, String> obtenerProvincias() throws FileNotFoundException, IOException {
 		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchProvincias());
 		this.scan = new Scanner(arch);
-		Hashtable<Integer, String> hash = new Hashtable<Integer, String>();
-		while(scan.hasNextLine()) {
-			String[] ars = scan.nextLine().split(";");
-			hash.put(Integer.valueOf(ars[0]), ars[1]);
+		Hashtable<Integer, String> hash = new Hashtable<>();
+		if(arch.canRead()) {
+			int i = 0;
+			while(scan.hasNextLine()) {
+				String[] ars = scan.nextLine().split(";");
+				hash.put(Integer.valueOf(ars[0]), ars[1]);
+				i++;
+			}
 		}
 		return hash;
 	}
-	
-	
-	
 		
 }

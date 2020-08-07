@@ -27,17 +27,16 @@ public class PaisDAOImplementacionString implements PaisDAO{
 		this.properties = new propertiesUtil();
 	}
 
-
-
 	@Override
 	public Hashtable<Integer, String> obtenerPaises() throws FileNotFoundException, IOException {
 		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchPais());
 		this.scan = new Scanner(arch);
-		Hashtable<Integer, String> hashprov = new Hashtable<Integer, String>();
-		
-		return null;
+		Hashtable<Integer, String> hash = new Hashtable<Integer, String>();
+		while(scan.hasNextLine()) {
+			String[] ars = scan.nextLine().split(";");
+			hash.put(Integer.valueOf(ars[0]), ars[1]);
+		}
+		return hash;
 	}
-	
-	
 	
 }

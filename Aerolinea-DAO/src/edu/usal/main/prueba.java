@@ -195,19 +195,31 @@ public static void main(String[] args) {
 		//----------------------------------PARTE STRING----------------------------------------
 		
 		ProvinciaDAO prov = new ProvinciaDAOImplementacionString();
+		PaisDAO pa = new PaisDAOImplementacionString();
+		
+//		try {
+//			Hashtable<Integer, String> hashprov = prov.obtenerProvincias();
+//			Enumeration<String> valor = hashprov.elements();
+//			while(valor.hasMoreElements()) {
+//				System.out.println("Prov:"+valor.nextElement());
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
-		try {
-			Hashtable<Integer, String> hashprov = prov.obtenerProvincias();
-			Enumeration key = hashprov.keys();
-			Enumeration valor = hashprov.elements();
-			while(key.hasMoreElements() && valor.hasMoreElements()) {
-				System.out.println(key.nextElement());
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//		try {
+//			Hashtable<Integer, String> hashpa = pa.obtenerPaises();
+//			Enumeration<String> key = hashpa.elements();
+//			while(key.hasMoreElements()) {
+//				System.out.println("Pais: "+key.nextElement());
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
 		}
-	
 	}
-}
+
