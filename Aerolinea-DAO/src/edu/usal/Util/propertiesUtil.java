@@ -50,4 +50,8 @@ public Properties properties = obtenerProperties();
 	public String obtenerNomArchProvincias() {
 		return properties.getProperty("nomArchProvincias");
 	}
+	
+	public String obtenerNomArchAeropuerto() {
+		return properties.getProperty("nomArchAeropuerto");
+	}
 }

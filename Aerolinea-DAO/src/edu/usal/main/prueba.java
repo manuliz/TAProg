@@ -7,11 +7,13 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 
+import edu.usal.negocio.DAO.Implementacion.AlianzasDAOImplementacionString;
 import edu.usal.negocio.DAO.Implementacion.ClienteDAOImplementacionStream;
 import edu.usal.negocio.DAO.Implementacion.LineasAereasDAOImplementacionStream;
 import edu.usal.negocio.DAO.Implementacion.PaisDAOImplementacionString;
 import edu.usal.negocio.DAO.Implementacion.ProvinciaDAOImplementacionString;
 import edu.usal.negocio.DAO.Implementacion.VuelosDAOImplementacionStream;
+import edu.usal.negocio.DAO.Interfaces.AlianzasDAO;
 import edu.usal.negocio.DAO.Interfaces.ClienteDAO;
 import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
 import edu.usal.negocio.DAO.Interfaces.PaisDAO;
@@ -107,7 +109,7 @@ public static void main(String[] args) {
 //		}
 		
 		//PRUEBA VUELOS
-		VuelosDAO vuelos = new VuelosDAOImplementacionStream();
+//		VuelosDAO vuelos = new VuelosDAOImplementacionStream();
 		
 //		try {
 //			vuelos.crearVuelo(v1);
@@ -149,7 +151,7 @@ public static void main(String[] args) {
 //			e.printStackTrace();
 //		}
 		
-		LineasAereasDAO lineas = new LineasAereasDAOImplementacionStream();
+//		LineasAereasDAO lineas = new LineasAereasDAOImplementacionStream();
 		
 //		try {
 //			lineas.crearLineaAerea(la1);
@@ -194,8 +196,9 @@ public static void main(String[] args) {
 		
 		//----------------------------------PARTE STRING----------------------------------------
 		
-		ProvinciaDAO prov = new ProvinciaDAOImplementacionString();
-		PaisDAO pa = new PaisDAOImplementacionString();
+//		ProvinciaDAO prov = new ProvinciaDAOImplementacionString();
+//		PaisDAO pa = new PaisDAOImplementacionString();
+//		AlianzasDAO al =new AlianzasDAOImplementacionString();
 		
 //		try {
 //			Hashtable<Integer, String> hashprov = prov.obtenerProvincias();
@@ -219,6 +222,19 @@ public static void main(String[] args) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
+		
+//		try {
+//		Hashtable<Integer, String> hashal = al.obtenerAlianzas();
+//		Enumeration<String> key = hashal.elements();
+//		while(key.hasMoreElements()) {
+//			System.out.println("Alianza: "+key.nextElement());
+//		}
+//	} catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+		
 
 		}
 	}

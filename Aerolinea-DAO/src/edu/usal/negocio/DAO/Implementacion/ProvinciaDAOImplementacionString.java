@@ -34,11 +34,9 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 		this.scan = new Scanner(arch);
 		Hashtable<Integer, String> hash = new Hashtable<>();
 		if(arch.canRead()) {
-			int i = 0;
 			while(scan.hasNextLine()) {
 				String[] ars = scan.nextLine().split(";");
 				hash.put(Integer.valueOf(ars[0]), ars[1]);
-				i++;
 			}
 		}
 		return hash;
