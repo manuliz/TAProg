@@ -12,6 +12,6 @@ public interface AeropuertoDAO {
 	List<Aeropuerto> obtenerAeropuertos() throws FileNotFoundException, IOException;
 	void crarAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException;
 	void actualizarAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException;
-	void aliminarAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException;
+	void eliminarAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException;
 
 }

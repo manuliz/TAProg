@@ -54,4 +54,8 @@ public Properties properties = obtenerProperties();
 	public String obtenerNomArchAeropuerto() {
 		return properties.getProperty("nomArchAeropuerto");
 	}
+	
+	public String obtenerNomArchVentas() {
+		return properties.getProperty("nomArchVentas");
+	}
 }

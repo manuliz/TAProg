@@ -107,7 +107,7 @@ public class AeropuertoDAOImplementacionStream implements AeropuertoDAO{
 	}
 
 	@Override
-	public void aliminarAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException {
+	public void eliminarAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException {
 		List<Aeropuerto> lista5 = this.obtenerAeropuertos();
 		
 		if(lista5.isEmpty()) {
