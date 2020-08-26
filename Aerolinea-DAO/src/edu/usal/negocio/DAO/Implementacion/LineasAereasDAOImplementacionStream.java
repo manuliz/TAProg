@@ -93,7 +93,6 @@ public class LineasAereasDAOImplementacionStream implements LineasAereasDAO{
 				a.setAlianzas(lineasAereas.getAlianzas());
 				a.setIdLineasAereas(lineasAereas.getIdLineasAereas());
 				a.setNombreAerolinea(lineasAereas.getNombreAerolinea());
-				a.setVuelos(lineasAereas.getVuelos());
 				
 				this.guardar(lista5);
 			}

@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Aeropuerto implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private int idCiudad;
+	private int idAeropuerto;
 	private String ciudad;
 	private String identificacionAeropuerto;
 	Pais pais;
@@ -15,21 +15,21 @@ public class Aeropuerto implements Serializable{
 		
 	}
 	
-	public Aeropuerto(int idCiudad, String ciudad, String identificacionAeropuerto, Pais pais, Provincia provincia) {
+	public Aeropuerto(int idAeropuerto, String ciudad, String identificacionAeropuerto, Pais pais, Provincia provincia) {
 		super();
-		this.idCiudad = idCiudad;
+		this.idAeropuerto = idAeropuerto;
 		this.ciudad = ciudad;
 		this.identificacionAeropuerto = identificacionAeropuerto;
 		this.pais = pais;
 		this.provincia = provincia;
 	}
 
-	public int getIdCiudad() {
-		return idCiudad;
+	public int getIdAeropuerto() {
+		return idAeropuerto;
 	}
 
-	public void setIdCiudad(int idCiudad) {
-		this.idCiudad = idCiudad;
+	public void setIdAeropuerto(int idCiudad) {
+		this.idAeropuerto = idCiudad;
 	}
 
 	public String getCiudad() {
@@ -66,7 +66,7 @@ public class Aeropuerto implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Aeropuerto [idCiudad=" + idCiudad + ", ciudad=" + ciudad + ", identificacionAeropuerto="
+		return "Aeropuerto [idCiudad=" + idAeropuerto + ", ciudad=" + ciudad + ", identificacionAeropuerto="
 				+ identificacionAeropuerto + ", pais=" + pais + ", provincia=" + provincia + "]";
 	}
 

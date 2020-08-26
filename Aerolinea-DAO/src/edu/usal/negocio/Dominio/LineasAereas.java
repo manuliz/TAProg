@@ -8,18 +8,18 @@ public class LineasAereas implements Serializable{
 	Alianzas alianzas;
 	private int idLineasAereas;
 	private String nombreAerolinea;
-	Vuelos vuelos;
+	
 	
 	public LineasAereas() {
 		
 	}
 	
-	public LineasAereas(Alianzas alianzas, int idLineasAereas, String nombreAerolinea, Vuelos vuelos) {
+	public LineasAereas(Alianzas alianzas, int idLineasAereas, String nombreAerolinea) {
 		super();
 		this.alianzas = alianzas;
 		this.idLineasAereas = idLineasAereas;
 		this.nombreAerolinea = nombreAerolinea;
-		this.vuelos = vuelos;
+		
 	}
 
 	public Alianzas getAlianzas() {
@@ -44,14 +44,6 @@ public class LineasAereas implements Serializable{
 
 	public void setNombreAerolinea(String nombreAerolinea) {
 		this.nombreAerolinea = nombreAerolinea;
-	}
-
-	public Vuelos getVuelos() {
-		return vuelos;
-	}
-
-	public void setVuelos(Vuelos vuelos) {
-		this.vuelos = vuelos;
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class AeropuertoDAOImplementacionStream implements AeropuertoDAO{
 	public Aeropuerto obtenerAeropuerto(int idCiudad) throws FileNotFoundException, IOException {
 		List<Aeropuerto> lista1 = this.obtenerAeropuertos();
 		for(Aeropuerto a : lista1) {
-			if(a.getIdCiudad() == idCiudad) {
+			if(a.getIdAeropuerto() == idCiudad) {
 				return a;
 			}
 		}
@@ -78,7 +78,7 @@ public class AeropuertoDAOImplementacionStream implements AeropuertoDAO{
 	}
 
 	@Override
-	public void crarAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException {
+	public void crearAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException {
 		List<Aeropuerto> lista3 = this.obtenerAeropuertos();
 		lista3.add(aero);
 		
@@ -93,8 +93,8 @@ public class AeropuertoDAOImplementacionStream implements AeropuertoDAO{
 			return;
 		}else {
 		for(Aeropuerto b : lista4) {
-			if(b.getIdCiudad() == aero.getIdCiudad()) {
-					b.setIdCiudad(aero.getIdCiudad());
+			if(b.getIdAeropuerto() == aero.getIdAeropuerto()) {
+					b.setIdAeropuerto(aero.getIdAeropuerto());
 					b.setCiudad(aero.getCiudad());
 					b.setIdentificacionAeropuerto(aero.getIdentificacionAeropuerto());
 					b.setPais(aero.getPais());
@@ -114,7 +114,7 @@ public class AeropuertoDAOImplementacionStream implements AeropuertoDAO{
 			return;
 		}else {
 			for(Aeropuerto a : lista5) {
-				if(a.getIdCiudad() == aero.getIdCiudad()) {
+				if(a.getIdAeropuerto() == aero.getIdAeropuerto()) {
 					lista5.remove(a);
 					
 					this.guardar(lista5);

@@ -6,12 +6,13 @@ import java.util.Properties;
 
 public class propertiesUtil {
 	
-public Properties properties = obtenerProperties();
+public static Properties properties = obtenerProperties();
 	
-	private Properties obtenerProperties() {
+	private static Properties obtenerProperties() {
 		properties = new Properties();
 		try {
-			properties.load(new FileReader("config.properties"));
+//			properties.load(new FileReader("config.properties"));
+			properties.load(ClassLoader.getSystemResourceAsStream("config.properties"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -19,43 +20,59 @@ public Properties properties = obtenerProperties();
 		return properties;
 	}
 	
-	public String obtenerDirecArchivos() {
+	public static String obtenerDirecArchivos() {
 		return properties.getProperty("direcArchivos");
 	}
 	
-	public String obtenerNomArchCliente() {
+	public static String obtenerNomArchCliente() {
 		return properties.getProperty("nomArchCliente");
 	}
 	
-	public String obtenerNomArchVuelos() {
+	public static String obtenerNomArchVuelos() {
 		return properties.getProperty("nomArchVuelos");
 	}
 	
-	public String obtenerNomLineasAereas() {
+	public static  String obtenerNomLineasAereas() {
 		return properties.getProperty("nomArchLineasAereas");
 	}
 	
-	public String obtenerNomArchPais() {
+	public static String obtenerNomArchPais() {
 		return properties.getProperty("nomArchPais");
 	}
 	
-	public String obtenerNomArchAerolineas() {
+	public static String obtenerNomArchAerolineas() {
 		return properties.getProperty("nomArchAerolineas");
 	}
 	
-	public String obtenerNomArchAlianzas() {
+	public static String obtenerNomArchAlianzas() {
 		return properties.getProperty("nomArchAlianzas");
 	}
 	
-	public String obtenerNomArchProvincias() {
+	public static String obtenerNomArchProvincias() {
 		return properties.getProperty("nomArchProvincias");
 	}
 	
-	public String obtenerNomArchAeropuerto() {
+	public static String obtenerNomArchAeropuerto() {
 		return properties.getProperty("nomArchAeropuerto");
 	}
 	
-	public String obtenerNomArchVentas() {
+	public static String obtenerNomArchVentas() {
 		return properties.getProperty("nomArchVentas");
+	}
+	
+	public static String obtenerDriver() {
+		return properties.getProperty("DRIVER");
+	}
+	
+	public static String obtenerURL() {
+		return properties.getProperty("URL");
+	}
+	
+	public static String obtenerUsu() {
+		return properties.getProperty("USER");
+	}
+	
+	public static String obtenerCon() {
+		return properties.getProperty("PASSWORD");
 	}
 }
