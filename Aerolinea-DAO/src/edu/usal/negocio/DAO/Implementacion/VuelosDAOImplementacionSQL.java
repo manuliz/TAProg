@@ -45,7 +45,7 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 	@Override
 	public void crearVuelo(Vuelos vuelo) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		
-		query = "INSERT INTO bdaerolinea.vuelos (idVuelo, numVuelo, cantAsientos, tiempoDevUelo, idAerolinea, idAeropuertoSalida, idAeropuertoLlegada, fhSalida, fhLlegada) VALUES (?,?,?,?,?,?,?,?,?)";
+		query = "INSERT INTO bdaerolinea.vuelos VALUES (?,?,?,?,?,?,?,?,?)";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
 		pstm=conn.prepareStatement(query);
@@ -60,10 +60,10 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 		pstm.setTimestamp(9, DateATimestamp(vuelo.getFhLlegada()));
 		
 		int pos = pstm.executeUpdate();
-		if(pos==0) {
+		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
-			Conexion.cerrarConexion(conn);		
+			Conexion.cerrarConexion(conn);	
 		}
 		conn.rollback();
 		Conexion.cerrarPrepStatement(pstm);
