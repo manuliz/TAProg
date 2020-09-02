@@ -1,6 +1,8 @@
 package edu.usal.negocio.Dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LineasAereas implements Serializable{
 	
@@ -8,18 +10,18 @@ public class LineasAereas implements Serializable{
 	Alianzas alianzas;
 	private int idLineasAereas;
 	private String nombreAerolinea;
-	
+	private ArrayList<Vuelos> lv;
 	
 	public LineasAereas() {
 		
 	}
 	
-	public LineasAereas(Alianzas alianzas, int idLineasAereas, String nombreAerolinea) {
+	public LineasAereas(Alianzas alianzas, int idLineasAereas, String nombreAerolinea, ArrayList<Vuelos> lv) {
 		super();
 		this.alianzas = alianzas;
 		this.idLineasAereas = idLineasAereas;
 		this.nombreAerolinea = nombreAerolinea;
-		
+		this.lv = lv;
 	}
 
 	public Alianzas getAlianzas() {
@@ -46,10 +48,20 @@ public class LineasAereas implements Serializable{
 		this.nombreAerolinea = nombreAerolinea;
 	}
 
+	public ArrayList<Vuelos> getLv() {
+		return lv;
+	}
+
+	public void setLv(ArrayList<Vuelos> lv) {
+		this.lv = lv;
+	}
+
 	@Override
 	public String toString() {
 		return "LineasAereas [alianzas=" + alianzas + ", idLineasAereas=" + idLineasAereas + ", nombreAerolinea="
-				+ nombreAerolinea + "]";
+				+ nombreAerolinea + ", Vuelos=" + lv + "]";
 	}
+
+	
 
 }

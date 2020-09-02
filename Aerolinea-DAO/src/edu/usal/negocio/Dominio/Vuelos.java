@@ -16,6 +16,7 @@ public class Vuelos implements Serializable{
 	Aeropuerto aeropuertoLlegada;
 	private Date fhSalida;
 	private Date fhLlegada;
+	private List<String> lcli;
 	
 	public Vuelos() {
 		

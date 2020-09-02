@@ -25,27 +25,44 @@ public class pruebaSQL {
 		Provincia prov1 = new Provincia(1, "Catamarca");
 		Aeropuerto AE11 = new Aeropuerto(1, "BSAS", "JFK", pais1, prov1);
 		Aeropuerto AE12 = new Aeropuerto(2, "CATAMARCA", "CATA", pais1, prov1);
-		LineasAereas la1 = new LineasAereas(Alianzas.Aerolíneas_Argentinas, 4, "PAL");
+		LineasAereas la1 = new LineasAereas(Alianzas.Aerolíneas_Argentinas, 1, "MDQ");
 		Vuelos v1 = new Vuelos(1, 2223, 5 , 1244, "12hs", la1, AE11, AE12, hoy, hoy);
 		
 		
 		VuelosDAO vd = new VuelosDAOImplementacionSQL();
 		LineasAereasDAO ld = new LineasAereasDAOImplementacionSQL();
 		
+//		try {
+//			ld.crearLineaAerea(la1);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			ld.actualizarLineaAerea(la1);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			ld.eliminarLineaAerea(2);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		try {
-			ld.crearLineaAerea(la1);
+			LineasAereas ln = ld.obtenerLineaAerea(3);
+			System.out.println(ln.toString());
 		} catch (ClassNotFoundException | IOException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-//		try {
-//			vd.crearVuelo(v1);
-//		} catch (ClassNotFoundException | IOException | SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	
+		
 
 	}
-
 }

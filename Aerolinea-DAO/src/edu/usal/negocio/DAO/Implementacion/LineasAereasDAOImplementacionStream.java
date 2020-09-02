@@ -100,10 +100,10 @@ public class LineasAereasDAOImplementacionStream implements LineasAereasDAO{
 	}
 
 	@Override
-	public void eliminarLineaAerea(LineasAereas lineasAereas) throws FileNotFoundException, IOException {
+	public void eliminarLineaAerea(int idLineasAereas) throws FileNotFoundException, IOException {
 		List<LineasAereas> lista6 = this.obtenerLineasAereas();
 		for(LineasAereas a : lista6) {
-			if(a.getIdLineasAereas() == lineasAereas.getIdLineasAereas()) {
+			if(a.getIdLineasAereas() == idLineasAereas) {
 				lista6.remove(a);
 				
 				this.guardar(lista6);

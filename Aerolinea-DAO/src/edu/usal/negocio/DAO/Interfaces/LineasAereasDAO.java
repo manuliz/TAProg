@@ -9,10 +9,10 @@ import edu.usal.negocio.Dominio.LineasAereas;
 
 public interface LineasAereasDAO {
 	
-	LineasAereas obtenerLineaAerea(int idLineaAerea) throws FileNotFoundException, IOException;
+	LineasAereas obtenerLineaAerea(int idLineaAerea) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
 	List<LineasAereas> obtenerLineasAereas() throws FileNotFoundException, IOException;
 	void crearLineaAerea(LineasAereas lineasAereas) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
-	void actualizarLineaAerea(LineasAereas lineasAereas) throws FileNotFoundException, IOException;
-	void eliminarLineaAerea(LineasAereas lineasAereas) throws FileNotFoundException, IOException;
+	void actualizarLineaAerea(LineasAereas lineasAereas) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
+	void eliminarLineaAerea(int idLineaAereas) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
 
 }
