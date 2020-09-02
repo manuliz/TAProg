@@ -2,6 +2,7 @@ package edu.usal.negocio.Dominio;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Vuelos implements Serializable{
 	
@@ -16,14 +17,14 @@ public class Vuelos implements Serializable{
 	Aeropuerto aeropuertoLlegada;
 	private Date fhSalida;
 	private Date fhLlegada;
-	private List<String> lcli;
+	private List<Cliente> lcli;
 	
 	public Vuelos() {
 		
 	}
 	
 	public Vuelos(int idVuelos, int numDeVuelos, int cantDeAsientos, int asientosDisponibles, String tiempoDeVuelo, LineasAereas lineaAerea, Aeropuerto aeropuertoSalida,
-			Aeropuerto aeropuertoLlegada, Date hoy, Date hoy2) {
+			Aeropuerto aeropuertoLlegada, Date hoy, Date hoy2, List<Cliente> lcli) {
 		super();
 		this.idVuelos = idVuelos;
 		this.numDeVuelos = numDeVuelos;
@@ -35,6 +36,7 @@ public class Vuelos implements Serializable{
 		this.aeropuertoLlegada = aeropuertoLlegada;
 		this.fhSalida = hoy;
 		this.fhLlegada = hoy2;
+		this.lcli = lcli;
 	}
 
 	public int getIdVuelos() {
@@ -122,7 +124,6 @@ public class Vuelos implements Serializable{
 		return "Vuelos [idVuelos=" + idVuelos + ", numDeVuelos=" + numDeVuelos + ", cantDeAsientos=" + cantDeAsientos
 				+ ", asientosDisponibles=" + asientosDisponibles + ", tiempoDeVuelo=" + tiempoDeVuelo + ", lineaAerea="
 				+ lineaAerea + ", aeropuertoSalida=" + aeropuertoSalida + ", aeropuertoLlegada=" + aeropuertoLlegada
-				+ ", fhSalida=" + fhSalida + ", fhLlegada=" + fhLlegada + "]";
-	}
-	
+				+ ", fhSalida=" + fhSalida + ", fhLlegada=" + fhLlegada + ", lcli=" + lcli + "]";
+	}	
 }
