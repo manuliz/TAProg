@@ -13,6 +13,7 @@ import edu.usal.Util.Conexion;
 import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
 import edu.usal.negocio.Dominio.Alianzas;
 import edu.usal.negocio.Dominio.LineasAereas;
+import edu.usal.negocio.Dominio.Vuelos;
 
 public final class LineasAereasDAOImplementacionSQL implements LineasAereasDAO{
 
@@ -52,8 +53,33 @@ public final class LineasAereasDAOImplementacionSQL implements LineasAereasDAO{
 	}
 
 	@Override
-	public List<LineasAereas> obtenerLineasAereas() throws FileNotFoundException, IOException {
-		
+	public List<LineasAereas> obtenerLineasAereas() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+		query="SELECT * FROM bdaerolinea.aerolinea";
+		List<LineasAereas> la = new ArrayList<>();
+		LineasAereas a;
+		conn=Conexion.obtenerConexion();
+		pstm=conn.prepareStatement(query);
+		rst =pstm.executeQuery();
+		while(rst.next()) {
+			List<Vuelos> lv = new ArrayList<>();
+			a = new LineasAereas();
+			a.setAlianzas(Alianzas2(rst.getString(1)));
+			a.setIdLineasAereas(rst.getInt(2));
+			a.setNombreAerolinea(rst.getString(3));
+			String query2="SELECT * FROM bdaerolinea.vuelos WHERE id_Aerolinea";
+			PreparedStatement pstm2 = conn.prepareStatement(query2);
+			pstm2.setInt(2,a.getIdLineasAereas());
+			ResultSet rst2 = pstm2.executeQuery();
+			while(rst2.next()) {
+				Vuelos vl = new Vuelos();
+				vl.setIdVuelos(rst2.getInt(1));
+				vl.setNumDeVuelos(rst2.getInt(2));
+				vl.setCantDeAsientos(rst2.getInt(3));
+				vl.setTiempoDeVuelo(rst2.getString(4));
+				vl.setAeropuertoSalida(rst2.getInt(6));
+				
+			}
+		}
 		return null;
 	}
 
