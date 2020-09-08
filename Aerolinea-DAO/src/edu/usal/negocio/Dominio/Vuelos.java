@@ -8,7 +8,7 @@ public class Vuelos implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private int idVuelos;
-	private int numDeVuelos;
+	private String numDeVuelos;
 	private int cantDeAsientos;
 	private int asientosDisponibles;
 	private String tiempoDeVuelo;
@@ -22,20 +22,34 @@ public class Vuelos implements Serializable{
 	public Vuelos() {
 		
 	}
-	
-	public Vuelos(int idVuelos, int numDeVuelos, int cantDeAsientos, int asientosDisponibles, String tiempoDeVuelo, LineasAereas lineaAerea, Aeropuerto aeropuertoSalida,
-			Aeropuerto aeropuertoLlegada, Date hoy, Date hoy2, List<Cliente> lcli) {
+
+	public Vuelos(int idVuelos, String numDeVuelos, int cantDeAsientos, String tiempoDeVuelo, LineasAereas lineaAerea,
+			Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada, Date fhSalida, Date fhLlegada) {
 		super();
 		this.idVuelos = idVuelos;
 		this.numDeVuelos = numDeVuelos;
 		this.cantDeAsientos = cantDeAsientos;
-		this.asientosDisponibles = asientosDisponibles;
 		this.tiempoDeVuelo = tiempoDeVuelo;
 		this.lineaAerea = lineaAerea;
 		this.aeropuertoSalida = aeropuertoSalida;
 		this.aeropuertoLlegada = aeropuertoLlegada;
-		this.fhSalida = hoy;
-		this.fhLlegada = hoy2;
+		this.fhSalida = fhSalida;
+		this.fhLlegada = fhLlegada;
+	}
+	
+	public Vuelos(int idVuelos, String numDeVuelos, int cantDeAsientos, String tiempoDeVuelo, LineasAereas lineaAerea,
+			Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada, Date fhSalida, Date fhLlegada,
+			List<Cliente> lcli) {
+		super();
+		this.idVuelos = idVuelos;
+		this.numDeVuelos = numDeVuelos;
+		this.cantDeAsientos = cantDeAsientos;
+		this.tiempoDeVuelo = tiempoDeVuelo;
+		this.lineaAerea = lineaAerea;
+		this.aeropuertoSalida = aeropuertoSalida;
+		this.aeropuertoLlegada = aeropuertoLlegada;
+		this.fhSalida = fhSalida;
+		this.fhLlegada = fhLlegada;
 		this.lcli = lcli;
 	}
 
@@ -47,11 +61,11 @@ public class Vuelos implements Serializable{
 		this.idVuelos = idVuelos;
 	}
 
-	public int getNumDeVuelos() {
+	public String getNumDeVuelos() {
 		return numDeVuelos;
 	}
 
-	public void setNumDeVuelos(int numDeVuelos) {
+	public void setNumDeVuelos(String numDeVuelos) {
 		this.numDeVuelos = numDeVuelos;
 	}
 
@@ -122,8 +136,9 @@ public class Vuelos implements Serializable{
 	@Override
 	public String toString() {
 		return "Vuelos [idVuelos=" + idVuelos + ", numDeVuelos=" + numDeVuelos + ", cantDeAsientos=" + cantDeAsientos
-				+ ", asientosDisponibles=" + asientosDisponibles + ", tiempoDeVuelo=" + tiempoDeVuelo + ", lineaAerea="
-				+ lineaAerea + ", aeropuertoSalida=" + aeropuertoSalida + ", aeropuertoLlegada=" + aeropuertoLlegada
-				+ ", fhSalida=" + fhSalida + ", fhLlegada=" + fhLlegada + ", lcli=" + lcli + "]";
-	}	
+				+ ", tiempoDeVuelo=" + tiempoDeVuelo + ", lineaAerea=" + lineaAerea + ", aeropuertoSalida="
+				+ aeropuertoSalida + ", aeropuertoLlegada=" + aeropuertoLlegada + ", fhSalida=" + fhSalida
+				+ ", fhLlegada=" + fhLlegada + ", lcli=" + lcli + "]";
+	}
+	
 }

@@ -16,6 +16,14 @@ public class LineasAereas implements Serializable{
 		
 	}
 	
+	public LineasAereas(Alianzas alianzas, int idLineasAereas, String nombreAerolinea) {
+		super();
+		this.alianzas=alianzas;
+		this.idLineasAereas=idLineasAereas;
+		this.nombreAerolinea=nombreAerolinea;
+		
+	}
+	
 	public LineasAereas(Alianzas alianzas, int idLineasAereas, String nombreAerolinea, ArrayList<Vuelos> lv) {
 		super();
 		this.alianzas = alianzas;

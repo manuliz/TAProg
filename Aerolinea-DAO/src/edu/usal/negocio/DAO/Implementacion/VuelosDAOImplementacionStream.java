@@ -38,10 +38,10 @@ public class VuelosDAOImplementacionStream implements VuelosDAO{
 	}
 
 	@Override
-	public Vuelos obtenerVuelo(int numVuelo) throws FileNotFoundException, IOException {
+	public Vuelos obtenerVuelo(String numVuelo) throws FileNotFoundException, IOException {
 		List<Vuelos> lista2 = this.obtenerVuelos();
 		for(Vuelos a : lista2) {
-			if(a.getNumDeVuelos() == numVuelo) {
+			if(a.getNumDeVuelos().equals(numVuelo)) {
 				return a;
 			}
 		}

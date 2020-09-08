@@ -1,6 +1,7 @@
 package edu.usal.main;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
@@ -40,35 +41,35 @@ public class prueba {
 public static void main(String[] args) {
 		
 //		ClienteDAO cliente = new ClienteDAOImplementacionStream();
-		Date hoy = Calendar.getInstance().getTime();
+//		Date hoy = Calendar.getInstance().getTime();
 		
-		// CLIENTE 1
-		Pais pais1 = new Pais(1, "Argentina");
-		Provincia prov1 = new Provincia(1, "Catamarca");
-		Aeropuerto AE11 = new Aeropuerto(1, "BSAS", "JFK", pais1, prov1);
-		Aeropuerto AE12 = new Aeropuerto(2, "CATAMARCA", "CATA", pais1, prov1);
-//		Vuelos v1 = new Vuelos(1, 2223, 1244, "12hs", AE11, AE12);
-		LineasAereas la1 = new LineasAereas(Alianzas.Airlink, 1, "ZALALLALA");
-		Pasaporte pasa1 = new Pasaporte(1, "40643145", "Albertito fernandu", "Argentina", hoy, hoy );
-		Telefono telef1 = new Telefono(1,"1132645209", "1132645209", "1234567890");
-		PasajeroFrecuente pasajfrec1 = new PasajeroFrecuente(1,"321", "Discapacitado", la1, Alianzas.Air_China);
-		Direccion Direc1 = new Direccion(1, pais1, prov1, "Catamarca", "lala", "123", "2222");
-
-		Cliente cli1 = new Cliente(1,"Manuel Liz", "40643145", pasa1, "20-40643145-2", hoy, "manuel@hotmail.com", telef1, pasajfrec1, Direc1);
-		
-		//CLIENTE 2
-		Pais pais2 = new Pais(2, "Russia");
-		Provincia prov2 = new Provincia(2, "Moscow");		
-		Aeropuerto AE21 = new Aeropuerto(2, "ASDASD", "ASDCC", pais2, prov2);
-		Aeropuerto AE22 = new Aeropuerto(2, "CASARARARAS", "CUTU", pais2, prov2);
-//		Vuelos v2 = new Vuelos(2, 11231, 231, "23hs", AE21, AE22);
-		LineasAereas la2 = new LineasAereas(Alianzas.Dragonair, 2, "iiiiLAZuZuZA");
-		Pasaporte pasa2 = new Pasaporte(2, "40608090", "Bladimir flor de putin", "Russia", hoy, hoy );
-		Telefono telef2 = new Telefono(2,"1133445566", "1122334455", "0987654321");
-		PasajeroFrecuente pasajfrec2 = new PasajeroFrecuente(2,"123", "Tarado", la2, Alianzas.Air_China);
-		Direccion Direc2 = new Direccion(2, pais2, prov2, "Rindur", "zaza", "312", "3333");
-
-		Cliente cli2 = new Cliente(2,"Mario Putinininini", "40640009", pasa2, "20-40640009-2", hoy, "sssss@hotmail.com", telef2, pasajfrec2, Direc2);
+//		// CLIENTE 1
+//		Pais pais1 = new Pais(1, "Argentina");
+//		Provincia prov1 = new Provincia(1, "Catamarca");
+//		Aeropuerto AE11 = new Aeropuerto(1, "BSAS", "JFK", pais1, prov1);
+//		Aeropuerto AE12 = new Aeropuerto(2, "CATAMARCA", "CATA", pais1, prov1);
+////		Vuelos v1 = new Vuelos(1, 2223, 1244, "12hs", AE11, AE12);
+//		LineasAereas la1 = new LineasAereas(Alianzas.Airlink, 1, "ZALALLALA");
+//		Pasaporte pasa1 = new Pasaporte(1, "40643145", "Albertito fernandu", "Argentina", hoy, hoy );
+//		Telefono telef1 = new Telefono(1,"1132645209", "1132645209", "1234567890");
+//		PasajeroFrecuente pasajfrec1 = new PasajeroFrecuente(1,"321", "Discapacitado", la1, Alianzas.Air_China);
+//		Direccion Direc1 = new Direccion(1, pais1, prov1, "Catamarca", "lala", "123", "2222");
+//
+//		Cliente cli1 = new Cliente(1,"Manuel Liz", "40643145", pasa1, "20-40643145-2", hoy, "manuel@hotmail.com", telef1, pasajfrec1, Direc1);
+//		
+//		//CLIENTE 2
+//		Pais pais2 = new Pais(2, "Russia");
+//		Provincia prov2 = new Provincia(2, "Moscow");		
+//		Aeropuerto AE21 = new Aeropuerto(2, "ASDASD", "ASDCC", pais2, prov2);
+//		Aeropuerto AE22 = new Aeropuerto(2, "CASARARARAS", "CUTU", pais2, prov2);
+////		Vuelos v2 = new Vuelos(2, 11231, 231, "23hs", AE21, AE22);
+//		LineasAereas la2 = new LineasAereas(Alianzas.Dragonair, 2, "iiiiLAZuZuZA");
+//		Pasaporte pasa2 = new Pasaporte(2, "40608090", "Bladimir flor de putin", "Russia", hoy, hoy );
+//		Telefono telef2 = new Telefono(2,"1133445566", "1122334455", "0987654321");
+//		PasajeroFrecuente pasajfrec2 = new PasajeroFrecuente(2,"123", "Tarado", la2, Alianzas.Air_China);
+//		Direccion Direc2 = new Direccion(2, pais2, prov2, "Rindur", "zaza", "312", "3333");
+//
+//		Cliente cli2 = new Cliente(2,"Mario Putinininini", "40640009", pasa2, "20-40640009-2", hoy, "sssss@hotmail.com", telef2, pasajfrec2, Direc2);
 		
 		
 		
@@ -155,15 +156,43 @@ public static void main(String[] args) {
 //			e.printStackTrace();
 //		}
 		
-//		LineasAereasDAO lineas = new LineasAereasDAOImplementacionStream();
+		LineasAereasDAO lineas = new LineasAereasDAOImplementacionStream();
+//		LineasAereas la4 = new LineasAereas(Alianzas.Adria_Airways, 1, "Adria Airways");
+//		LineasAereas la5 = new LineasAereas(Alianzas.Aerolíneas_Argentinas, 2, "Aerolineas Argentinas");
+//		LineasAereas la6 = new LineasAereas(Alianzas.Aeromexico, 3, "Aeromexico");
+//		LineasAereas la7 = new LineasAereas(Alianzas.Air_Europa, 4, "Air Europa");
+//		LineasAereas la8 = new LineasAereas(Alianzas.Air_New_Zealand_Link, 5, "Air New Zealand");
+//		LineasAereas la9 = new LineasAereas(Alianzas.American_Airlines, 6, "American Airlines");
+//		LineasAereas la10 = new LineasAereas(Alianzas.British_Airways, 7, "British Airlines");
+//		LineasAereas la11 = new LineasAereas(Alianzas.Delta_Air_Lines, 8, "Delta Airlines");
+//		LineasAereas la12 = new LineasAereas(Alianzas.LAN_Argentina, 9, "LAN");
+//		LineasAereas la13 = new LineasAereas(Alianzas.Qatar_Airways, 10, "Qatar Ariways");
+//		LineasAereas la14 = new LineasAereas(Alianzas.United_Airlines, 11, "United Airlines");
+//		LineasAereas la15 = new LineasAereas(Alianzas.Portugalia, 12, "Portugalia");
+//		LineasAereas la16 = new LineasAereas(Alianzas.Air_Mauritius, 13, "Maurito Airlines");
+//		LineasAereas la17 = new LineasAereas(Alianzas.KLM, 14, "KLM");
+	
 		
-//		try {
-//			lineas.crearLineaAerea(la1);
-//			lineas.crearLineaAerea(la2);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+//				try {
+//					lineas.crearLineaAerea(la4);
+//					lineas.crearLineaAerea(la5);
+//					lineas.crearLineaAerea(la6);
+//					lineas.crearLineaAerea(la7);
+//					lineas.crearLineaAerea(la8);
+//					lineas.crearLineaAerea(la9);
+//					lineas.crearLineaAerea(la10);
+//					lineas.crearLineaAerea(la11);
+//					lineas.crearLineaAerea(la12);
+//					lineas.crearLineaAerea(la13);
+//					lineas.crearLineaAerea(la14);
+//					lineas.crearLineaAerea(la15);
+//					lineas.crearLineaAerea(la16);
+//					lineas.crearLineaAerea(la17);
+//				} catch (ClassNotFoundException | IOException | SQLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+
 		
 //		try {
 //			lineas.actualizarLineaAerea(la2);
@@ -187,18 +216,21 @@ public static void main(String[] args) {
 //			e.printStackTrace();
 //		}
 		
+
 //		try {
 //			List<LineasAereas> lista1 = lineas.obtenerLineasAereas();
 //			for(LineasAereas a : lista1) {
 //				System.out.println(a.toString());
 //			}
-//		} catch (IOException e) {
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+
+
 		
-		AeropuertoDAO aero = new AeropuertoDAOImplementacionStream();
-		VentasDAO ven = new VentasDAOImplementacionStream();
+//		AeropuertoDAO aero = new AeropuertoDAOImplementacionStream();
+//		VentasDAO ven = new VentasDAOImplementacionStream();
 		
 //		try {
 //			aero.crearAeropuerto(AE11);

@@ -26,13 +26,12 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 	
 	private Date TimestampADate(Timestamp ts) {
 		java.util.Date d = new java.util.Date(ts.getTime());
-		
 		return d;
 	}
 
 	@Override
-	public Vuelos obtenerVuelo(int numVuelo) throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
+	public Vuelos obtenerVuelo(String numVuelo) throws FileNotFoundException, IOException {
+		
 		return null;
 	}
 
@@ -50,7 +49,7 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 		conn.setAutoCommit(false);
 		pstm=conn.prepareStatement(query);
 		pstm.setInt(1,vuelo.getIdVuelos());
-		pstm.setInt(2,vuelo.getNumDeVuelos());
+		pstm.setString(2,vuelo.getNumDeVuelos());
 		pstm.setInt(3, vuelo.getCantDeAsientos());
 		pstm.setString(4, vuelo.getTiempoDeVuelo());
 		pstm.setInt(5, vuelo.getLineaAerea().getIdLineasAereas());
@@ -72,14 +71,52 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 	}
 
 	@Override
-	public void actualizarVuelo(Vuelos vuelo) throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
+	public void actualizarVuelo(Vuelos vuelo) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+		query="UPDATE bdarolinea.vuelos SET numVuelo=?, cantAsientos=?, tiempoDeVuelo=?, id_Aerolinea=?, idAeropuertoSalida=?, idAeropuertoLlegada=?,"
+				+ " fhSalida=?, fhLlegada=? where idVuelo=?";
+		conn=Conexion.obtenerConexion();
+		conn.setAutoCommit(false);
+		pstm=conn.prepareStatement(query);
+		pstm.setString(1, vuelo.getNumDeVuelos());
+		pstm.setInt(2, vuelo.getCantDeAsientos());
+		pstm.setString(2, vuelo.getTiempoDeVuelo());
+		pstm.setInt(4, vuelo.getLineaAerea().getIdLineasAereas());
+		pstm.setInt(5, vuelo.getAeropuertoSalida().getIdAeropuerto());
+		pstm.setInt(6,  vuelo.getAeropuertoLlegada().getIdAeropuerto());
+		pstm.setTimestamp(7, DateATimestamp(vuelo.getFhSalida()));
+		pstm.setTimestamp(8, DateATimestamp(vuelo.getFhLlegada()));
+		pstm.setInt(9, vuelo.getIdVuelos());
+		
+		int pos = pstm.executeUpdate();
+		if(pos==1) {
+			conn.commit();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+		}else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+		}
 		
 	}
 
 	@Override
-	public void eliminarVuelo(Vuelos vuelo) throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
+	public void eliminarVuelo(Vuelos vuelo) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+		query="DELETE FROM bdaerolinea.vuelos WHERE idVuelo=?";
+		conn=Conexion.obtenerConexion();
+		conn.setAutoCommit(false);
+		pstm=conn.prepareStatement(query);
+		pstm.setInt(1, vuelo.getIdVuelos());
+		int pos = pstm.executeUpdate();
+		if(pos==1) {
+			conn.commit();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+		}else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+		}
 		
 	}
 
