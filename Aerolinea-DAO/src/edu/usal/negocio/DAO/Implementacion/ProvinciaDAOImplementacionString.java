@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -30,7 +31,7 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 
 	@Override
 	public Hashtable<Integer, String> obtenerProvincias() throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchProvincias());
+		this.arch = new File(propertiesUtil.obtenerDirecArchivos(), propertiesUtil.obtenerNomArchProvincias());
 		this.scan = new Scanner(arch);
 		Hashtable<Integer, String> hash = new Hashtable<>();
 		if(arch.canRead()) {
@@ -40,6 +41,27 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 			}
 		}
 		return hash;
+	}
+
+
+	@Override
+	public void crearProvincia(Provincia prov) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void actualizarProvincia(Provincia prov) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void eliminarProvincia(int idProvincia) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 }

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -29,7 +30,7 @@ public class PaisDAOImplementacionString implements PaisDAO{
 
 	@Override
 	public Hashtable<Integer, String> obtenerPaises() throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchPais());
+		this.arch = new File(propertiesUtil.obtenerDirecArchivos(), propertiesUtil.obtenerNomArchPais());
 		this.scan = new Scanner(arch);
 		Hashtable<Integer, String> hash = new Hashtable<Integer, String>();
 		while(scan.hasNextLine()) {
@@ -38,5 +39,22 @@ public class PaisDAOImplementacionString implements PaisDAO{
 		}
 		return hash;
 	}
-	
+
+	@Override
+	public void crearPais(Pais pais) {
+		
+	}
+
+	@Override
+	public void actualizarPais(Pais pais) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarPais(int idPais) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
