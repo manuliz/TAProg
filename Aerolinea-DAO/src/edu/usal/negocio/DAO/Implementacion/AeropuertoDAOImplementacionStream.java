@@ -53,11 +53,11 @@ public class AeropuertoDAOImplementacionStream implements AeropuertoDAO{
 
 	@Override
 	public List<Aeropuerto> obtenerAeropuertos() throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchAeropuerto());
+		this.arch = new File(propertiesUtil.obtenerDirecArchivos(), propertiesUtil.obtenerNomArchAeropuerto());
 		if(!arch.exists()) {
-			this.arch = new File(properties.obtenerDirecArchivos());
+			this.arch = new File(propertiesUtil.obtenerDirecArchivos());
 			arch.mkdir();
-			this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchAeropuerto());
+			this.arch = new File(propertiesUtil.obtenerDirecArchivos(), propertiesUtil.obtenerNomArchAeropuerto());
 			arch.createNewFile();
 			
 			return new ArrayList<Aeropuerto>();
@@ -107,14 +107,14 @@ public class AeropuertoDAOImplementacionStream implements AeropuertoDAO{
 	}
 
 	@Override
-	public void eliminarAeropuerto(Aeropuerto aero) throws FileNotFoundException, IOException {
+	public void eliminarAeropuerto(int idAero) throws FileNotFoundException, IOException {
 		List<Aeropuerto> lista5 = this.obtenerAeropuertos();
 		
 		if(lista5.isEmpty()) {
 			return;
 		}else {
 			for(Aeropuerto a : lista5) {
-				if(a.getIdAeropuerto() == aero.getIdAeropuerto()) {
+				if(idAero == a.getIdAeropuerto()) {
 					lista5.remove(a);
 					
 					this.guardar(lista5);

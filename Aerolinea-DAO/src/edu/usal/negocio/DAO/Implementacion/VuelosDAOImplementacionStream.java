@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -29,7 +30,7 @@ public class VuelosDAOImplementacionStream implements VuelosDAO{
 	}
 	
 	private void guardar(List<Vuelos> lista1) throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchVuelos());
+		this.arch = new File(propertiesUtil.obtenerDirecArchivos(), propertiesUtil.obtenerNomArchVuelos());
 		this.fos = new FileOutputStream(arch, false);
 		this.oos = new ObjectOutputStream(fos);
 		oos.writeObject(lista1);
@@ -50,11 +51,11 @@ public class VuelosDAOImplementacionStream implements VuelosDAO{
 
 	@Override
 	public List<Vuelos> obtenerVuelos() throws FileNotFoundException, IOException {
-		this.arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchVuelos());
+		this.arch = new File(propertiesUtil.obtenerDirecArchivos(), propertiesUtil.obtenerNomArchVuelos());
 		if(!arch.exists()) {
-			arch = new File(properties.obtenerDirecArchivos());
+			arch = new File(propertiesUtil.obtenerDirecArchivos());
 			arch.mkdir();
-			arch = new File(properties.obtenerDirecArchivos(), properties.obtenerNomArchVuelos());
+			arch = new File(propertiesUtil.obtenerDirecArchivos(), propertiesUtil.obtenerNomArchVuelos());
 			arch.createNewFile();
 			
 			return new ArrayList<Vuelos>();
@@ -103,13 +104,13 @@ public class VuelosDAOImplementacionStream implements VuelosDAO{
 	}
 
 	@Override
-	public void eliminarVuelo(Vuelos vuelo) throws FileNotFoundException, IOException {
+	public void eliminarVuelo(String numVuelo) throws FileNotFoundException, IOException {
 		List<Vuelos> lista6 = this.obtenerVuelos();
 		if(lista6.isEmpty()) {
 			return;
 		}else {
 			for(Vuelos a : lista6) {
-				if(vuelo.getNumDeVuelos() == a.getNumDeVuelos());
+				if(numVuelo.equals(a.getNumDeVuelos()));
 				lista6.remove(a);
 				
 				this.guardar(lista6);

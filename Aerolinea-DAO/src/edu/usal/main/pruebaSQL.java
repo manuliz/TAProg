@@ -8,10 +8,12 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 
+import edu.usal.negocio.DAO.Implementacion.AeropuertoDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.LineasAereasDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.PaisDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.ProvinciaDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.VuelosDAOImplementacionSQL;
+import edu.usal.negocio.DAO.Interfaces.AeropuertoDAO;
 import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
 import edu.usal.negocio.DAO.Interfaces.PaisDAO;
 import edu.usal.negocio.DAO.Interfaces.ProvinciaDAO;
@@ -106,12 +108,14 @@ public class pruebaSQL {
 		Provincia prov1 = new Provincia(1, "Buenos Aires");
 		Pais pais2 = new Pais(2, "Estados Unidos");
 		Provincia prov2 = new Provincia(2, "Salta");
+		Provincia pr4 = new Provincia(4,"Los Angeles");
 		Aeropuerto AE11 = new Aeropuerto(1, "Buenos Aires", "JFK", pais1, prov1);
-		Aeropuerto AE12 = new Aeropuerto(2, "Salta", "Salta", pais1, prov2);
+		Aeropuerto AE12 = new Aeropuerto(2, "California", "LAX", pais2, prov2);
 		LineasAereas la1 = new LineasAereas(Alianzas.Aerolíneas_Argentinas, 2, "Aerolineas Argentinas");
 		Vuelos v1 = new Vuelos(1,"AA-0001",36,"8Hs",la1,AE11,AE12,hoy,hoy);
 		Pais p3 = new Pais(3,"Costa Rica");
 		Provincia pr3 = new Provincia(3,"Rio negro"); 
+		
 		
 		VuelosDAO vd = new VuelosDAOImplementacionSQL();
 		
@@ -188,17 +192,62 @@ public class pruebaSQL {
 //			e1.printStackTrace();
 //		}
 		
-		try {
-			Hashtable<Integer, String> haspais = pp.obtenerPaises();
-			Enumeration<Integer> en = haspais.keys();
-			Enumeration<String> en1 = haspais.elements();
-			while(en.hasMoreElements() || en1.hasMoreElements()) {
-				System.out.println(en.nextElement().toString()+" "+en1.nextElement().toString());
-			}
-		} catch (ClassNotFoundException | IOException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Hashtable<Integer, String> haspais = pp.obtenerPaises();
+//			Enumeration<Integer> en = haspais.keys();
+//			Enumeration<String> en1 = haspais.elements();
+//			while(en.hasMoreElements() || en1.hasMoreElements()) {
+//				System.out.println(en.nextElement().toString()+" "+en1.nextElement().toString());
+//			}
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		//-----------------------------AEROPUERTO-------------------------
+		
+		AeropuertoDAO ae = new AeropuertoDAOImplementacionSQL();
+		
+//		try {
+//			ae.crearAeropuerto(AE11);
+//			ae.crearAeropuerto(AE12);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			ae.actualizarAeropuerto(AE12);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			ae.eliminarAeropuerto(2);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			Aeropuerto a = ae.obtenerAeropuerto(1);
+//			System.out.println(a.toString());
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			List<Aeropuerto> aer = ae.obtenerAeropuertos();
+//			for(Aeropuerto a : aer) {
+//				System.out.println(a.toString());
+//			}
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
 
 	}
 }
