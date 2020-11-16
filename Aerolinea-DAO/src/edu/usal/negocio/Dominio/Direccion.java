@@ -25,6 +25,10 @@ public class Direccion implements Serializable{
 		this.codPostal = codPostal;
 	}
 
+	public Direccion() {
+		super();
+	}
+
 	public int getIdDireccion() {
 		return idDireccion;
 	}

@@ -25,7 +25,6 @@ public class PaisDAOImplementacionSQL implements PaisDAO{
 		query="SELECT * FROM bdaerolinea.pais";
 		Hashtable<Integer, String> haspais = new Hashtable<>();
 		conn=Conexion.obtenerConexion();
-		conn.setAutoCommit(false);
 		pstm=conn.prepareStatement(query);
 		rst=pstm.executeQuery();
 		while(rst.next()) {
@@ -35,6 +34,23 @@ public class PaisDAOImplementacionSQL implements PaisDAO{
 		Conexion.cerrarPrepStatement(pstm);
 		Conexion.cerrarConexion(conn);
 		return haspais;
+	}
+	
+	public Pais obtenerPais(int idPais) throws ClassNotFoundException, SQLException {
+		query="SELECT * FROM bdaerolinea.pais WHERE idPais=?";
+		Pais Pai = new Pais();
+		conn=Conexion.obtenerConexion();
+		pstm=conn.prepareStatement(query);
+		pstm.setInt(1, idPais);
+		rst=pstm.executeQuery();
+		while(rst.next()) {
+			Pai.setIdPais(rst.getInt(1));
+			Pai.setNombrePais(rst.getString(2));
+		}
+		Conexion.cerrarPrepStatement(pstm);
+		Conexion.cerrarResultSet(rst);
+		Conexion.cerrarConexion(conn);
+		return Pai;
 	}
 
 	@Override

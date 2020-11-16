@@ -96,4 +96,22 @@ public class ProvinciaDAOImplementacionSQL implements ProvinciaDAO{
 			Conexion.cerrarConexion(conn);
 		}
 	}
+
+	@Override
+	public Provincia obtenerProvincia(int idProvincia) throws ClassNotFoundException, SQLException {
+		query="SELECT * FROM bdaerolinea.provincia WHERE idProvincia=?";
+		Provincia pro = new Provincia();
+		conn=Conexion.obtenerConexion();
+		pstm=conn.prepareStatement(query);
+		pstm.setInt(1, idProvincia);
+		rst=pstm.executeQuery();
+		while(rst.next()) {
+			pro.setIdProvincia(rst.getInt(1));
+			pro.setNombreProvincia(rst.getString(2));
+		}
+		Conexion.cerrarPrepStatement(pstm);
+		Conexion.cerrarResultSet(rst);
+		Conexion.cerrarConexion(conn);
+		return pro;
+	}
 }

@@ -23,6 +23,10 @@ public class Pasaporte implements Serializable{
 		this.fechaEmision = fechaEmision;
 		this.fechaVencimiento = fechaVencimiento;
 	}
+	
+	public Pasaporte() {
+		super();
+	}
 
 	public int getIdPasaporte() {
 		return idPasaporte;

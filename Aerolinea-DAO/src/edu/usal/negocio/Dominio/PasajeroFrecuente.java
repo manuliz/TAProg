@@ -21,6 +21,11 @@ public class PasajeroFrecuente implements Serializable{
 		this.alianzas = alianzas;
 	}
 
+	public PasajeroFrecuente() {
+		super();
+	}
+
+
 	public int getIdPasajeroFrecuente() {
 		return idPasajeroFrecuente;
 	}

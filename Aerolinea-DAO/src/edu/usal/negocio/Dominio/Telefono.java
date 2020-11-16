@@ -18,6 +18,10 @@ public class Telefono implements Serializable{
 		this.numPersonal = numPersonal;
 	}
 
+	public Telefono() {
+		
+	}
+
 	public int getIdTelefono() {
 		return idTelefono;
 	}

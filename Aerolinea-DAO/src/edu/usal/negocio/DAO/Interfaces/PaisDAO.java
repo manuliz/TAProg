@@ -12,7 +12,7 @@ import edu.usal.negocio.Dominio.Provincia;
 public interface PaisDAO {
 	
 	public Hashtable<Integer, String> obtenerPaises() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
-	
+	Pais obtenerPais(int idPais) throws ClassNotFoundException, SQLException;
 	void crearPais(Pais pais) throws ClassNotFoundException, SQLException;
 	void actualizarPais(Pais pais) throws ClassNotFoundException, SQLException;
 	void eliminarPais(int idPais) throws ClassNotFoundException, SQLException;
