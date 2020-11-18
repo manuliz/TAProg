@@ -10,18 +10,20 @@ public class Aeropuerto implements Serializable{
 	private String identificacionAeropuerto;
 	Pais pais;
 	Provincia provincia;
+	private String provOtro;
 	
 	public Aeropuerto() {
 		
 	}
 	
-	public Aeropuerto(int idAeropuerto, String ciudad, String identificacionAeropuerto, Pais pais, Provincia provincia) {
+	public Aeropuerto(int idAeropuerto, String ciudad, String identificacionAeropuerto, Pais pais, Provincia provincia, String provOtro) {
 		super();
 		this.idAeropuerto = idAeropuerto;
 		this.ciudad = ciudad;
 		this.identificacionAeropuerto = identificacionAeropuerto;
 		this.pais = pais;
 		this.provincia = provincia;
+		this.provOtro = provOtro;
 	}
 
 	public int getIdAeropuerto() {
@@ -62,6 +64,14 @@ public class Aeropuerto implements Serializable{
 
 	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
+	}
+
+	public String getProvOtro() {
+		return provOtro;
+	}
+
+	public void setProvOtro(String provOtro) {
+		this.provOtro = provOtro;
 	}
 
 	@Override

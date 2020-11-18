@@ -32,7 +32,6 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 		}
 		Conexion.cerrarPrepStatement(pstm);
 		Conexion.cerrarResultSet(rst);
-		Conexion.cerrarConexion(conn);
 		return tel;
 	}
 	
@@ -49,12 +48,11 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo crear el telefono!");
+			System.out.println("No se pudo crear el telefono!");}
 	}
 	
 	public void actualizarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException {
@@ -70,12 +68,11 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo actualizar el telefono!");
+			System.out.println("No se pudo actualizar el telefono!");}
 	}
 	
 	public void eliminarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException {
@@ -88,12 +85,11 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo eliminar el telefono!");
+			System.out.println("No se pudo eliminar el telefono!");}
 	}
 
 }

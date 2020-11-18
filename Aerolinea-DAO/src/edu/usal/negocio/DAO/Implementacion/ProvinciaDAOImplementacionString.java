@@ -63,5 +63,12 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public Provincia obtenerProvincia(int idProvincia) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 		
 }

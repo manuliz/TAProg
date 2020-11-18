@@ -1,5 +1,6 @@
 package edu.usal.negocio.DAO.Implementacion;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
 import edu.usal.negocio.DAO.Interfaces.PasajeroFrecuenteDAO;
 import edu.usal.negocio.Dominio.Alianzas;
 import edu.usal.negocio.Dominio.Cliente;
+import edu.usal.negocio.Dominio.LineasAereas;
 import edu.usal.negocio.Dominio.PasajeroFrecuente;
 
 public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteDAO{
@@ -30,7 +32,7 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 		return al;
 	}
 	
-	public PasajeroFrecuente obtenerPasajeroFrecuente(int idPasajeroFrecuente) throws ClassNotFoundException, SQLException {
+	public PasajeroFrecuente obtenerPasajeroFrecuente(int idPasajeroFrecuente) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		query="SELECT * FROM bdaerolinea.pasajerofrecuente WHERE idPasajeroFrecuente=?";
 		PasajeroFrecuente pf = new PasajeroFrecuente();
 		conn=Conexion.obtenerConexion();
@@ -41,18 +43,11 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 			pf.setIdPasajeroFrecuente(rst.getInt(1));
 			pf.setNumero(rst.getString(2));
 			pf.setCategoria(rst.getString(3));
-			LineasAereasDAO la = new LineasAereasDAOImplementacionSQL();
-			try {
-				pf.setAerolinea(la.obtenerLineaAerea(rst.getInt(4)));
-			} catch (IOException e) {
-				System.out.println("No se pudo obtener la linea aerea dentro de pasajero frecuente.");
-				e.printStackTrace();
-			}
+			pf.setAerolinea(this.obtenerLineaAerea(rst.getInt(4)));
 			pf.setAlianzas(Alianzas2(rst.getString(5)));
 		}
 		Conexion.cerrarPrepStatement(pstm);
 		Conexion.cerrarResultSet(rst);
-		Conexion.cerrarConexion(conn);
 		return pf;
 	}
 	
@@ -70,12 +65,11 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo crear el numero de Pasaporte frecuente!");
+			System.out.println("No se pudo crear el numero de Pasaporte frecuente!");}
 	}
 	
 	public void actualizarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException {
@@ -93,12 +87,11 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else { 
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo actualizar el numero de pasajero frecuente!");
+			System.out.println("No se pudo actualizar el numero de pasajero frecuente!");}
 	}
 	
 	public void eliminarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException {
@@ -111,11 +104,27 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else { 
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
+			System.out.println("No se pudo elimina el pasajero frecuente!");}
+	}
+	
+	private LineasAereas obtenerLineaAerea(int idLineaAerea) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+		query="SELECT * FROM bdaerolinea.aerolinea WHERE IDAerolinea=?";
+		LineasAereas aero = new LineasAereas();
+		conn=Conexion.obtenerConexion();
+		pstm=conn.prepareStatement(query);
+		pstm.setInt(1, idLineaAerea);
+		rst=pstm.executeQuery();
+		while(rst.next()) {
+			aero.setAlianzas(Alianzas2(rst.getString(1)));
+			aero.setIdLineasAereas(rst.getInt(2));
+			aero.setNombreAerolinea(rst.getString(3));
 		}
-		conn.rollback();
+		Conexion.cerrarResultSet(rst);
 		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo elimina el pasajero frecuente!");
+		return aero;
 	}
 }

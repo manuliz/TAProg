@@ -37,12 +37,11 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo crear la direccion!");
+			System.out.println("No se pudo crear la direccion!");}
 	}
 	
 	public void actualizarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException {
@@ -60,12 +59,11 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo actualizar la direccion!");
+			System.out.println("No se pudo actualizar la direccion!");}
 	}
 	
 	public void eliminarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException {
@@ -78,12 +76,11 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo eliminar la direccion!");
+			System.out.println("No se pudo eliminar la direccion!");}
 	}
 
 	@Override
@@ -105,7 +102,6 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 		}
 		Conexion.cerrarPrepStatement(pstm);
 		Conexion.cerrarResultSet(rst);
-		Conexion.cerrarConexion(conn);
 		return direc;
 	}
 }

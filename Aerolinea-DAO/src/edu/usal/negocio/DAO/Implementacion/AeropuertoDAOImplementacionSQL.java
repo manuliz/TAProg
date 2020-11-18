@@ -11,6 +11,8 @@ import java.util.List;
 
 import edu.usal.Util.Conexion;
 import edu.usal.negocio.DAO.Interfaces.AeropuertoDAO;
+import edu.usal.negocio.DAO.Interfaces.PaisDAO;
+import edu.usal.negocio.DAO.Interfaces.ProvinciaDAO;
 import edu.usal.negocio.Dominio.Aeropuerto;
 
 public class AeropuertoDAOImplementacionSQL implements AeropuertoDAO{
@@ -19,6 +21,8 @@ public class AeropuertoDAOImplementacionSQL implements AeropuertoDAO{
 	private PreparedStatement pstm;
 	private String query;
 	private ResultSet rst;
+	PaisDAO pd = new PaisDAOImplementacionSQL();
+	ProvinciaDAO pvd = new ProvinciaDAOImplementacionSQL();
 
 	@Override
 	public Aeropuerto obtenerAeropuerto(int idCiudad) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException {
@@ -32,8 +36,9 @@ public class AeropuertoDAOImplementacionSQL implements AeropuertoDAO{
 			ae.setIdAeropuerto(idCiudad);
 			ae.setCiudad(rst.getString(2));
 			ae.setIdentificacionAeropuerto(rst.getString(3));
-			ae.setPais(null);
-			ae.setProvincia(null);
+			ae.setPais(pd.obtenerPais(rst.getInt(4)));
+			ae.setProvincia(pvd.obtenerProvincia(rst.getInt(5)));
+			ae.setProvOtro(rst.getString(6));
 		}
 		
 		Conexion.cerrarResultSet(rst);
@@ -55,8 +60,9 @@ public class AeropuertoDAOImplementacionSQL implements AeropuertoDAO{
 			ae.setIdAeropuerto(rst.getInt(1));
 			ae.setCiudad(rst.getString(2));
 			ae.setIdentificacionAeropuerto(rst.getString(3));
-			ae.setPais(null);
-			ae.setProvincia(null);
+			ae.setPais(pd.obtenerPais(rst.getInt(4)));
+			ae.setProvincia(pvd.obtenerProvincia(rst.getInt(5)));
+			ae.setProvOtro(rst.getString(6));
 			aer.add(ae);
 		}
 		Conexion.cerrarResultSet(rst);
@@ -77,7 +83,7 @@ public class AeropuertoDAOImplementacionSQL implements AeropuertoDAO{
 		pstm.setString(3,aero.getIdentificacionAeropuerto());
 		pstm.setInt(4, aero.getPais().getIdPais());
 		pstm.setInt(5, aero.getProvincia().getIdProvincia());
-		pstm.setString(6, null);
+		pstm.setString(6, aero.getProvOtro());
 		int pos = pstm.executeUpdate();
 		if(pos==1) {
 			conn.commit();
@@ -100,7 +106,7 @@ public class AeropuertoDAOImplementacionSQL implements AeropuertoDAO{
 		pstm.setString(2, aero.getIdentificacionAeropuerto());
 		pstm.setInt(3, aero.getPais().getIdPais());
 		pstm.setInt(4, aero.getProvincia().getIdProvincia());
-		pstm.setString(5, null);
+		pstm.setString(5, aero.getProvOtro());
 		pstm.setInt(6, aero.getIdAeropuerto());
 		int pos = pstm.executeUpdate();
 		if(pos==1) {

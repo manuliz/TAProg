@@ -111,7 +111,6 @@ public class ProvinciaDAOImplementacionSQL implements ProvinciaDAO{
 		}
 		Conexion.cerrarPrepStatement(pstm);
 		Conexion.cerrarResultSet(rst);
-		Conexion.cerrarConexion(conn);
 		return pro;
 	}
 }

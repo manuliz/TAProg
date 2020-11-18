@@ -8,21 +8,29 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 
+import edu.usal.Util.obtenerID;
 import edu.usal.negocio.DAO.Implementacion.AeropuertoDAOImplementacionSQL;
+import edu.usal.negocio.DAO.Implementacion.ClienteDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.LineasAereasDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.PaisDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.ProvinciaDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.VuelosDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Interfaces.AeropuertoDAO;
+import edu.usal.negocio.DAO.Interfaces.ClienteDAO;
 import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
 import edu.usal.negocio.DAO.Interfaces.PaisDAO;
 import edu.usal.negocio.DAO.Interfaces.ProvinciaDAO;
 import edu.usal.negocio.DAO.Interfaces.VuelosDAO;
 import edu.usal.negocio.Dominio.Aeropuerto;
 import edu.usal.negocio.Dominio.Alianzas;
+import edu.usal.negocio.Dominio.Cliente;
+import edu.usal.negocio.Dominio.Direccion;
 import edu.usal.negocio.Dominio.LineasAereas;
 import edu.usal.negocio.Dominio.Pais;
+import edu.usal.negocio.Dominio.PasajeroFrecuente;
+import edu.usal.negocio.Dominio.Pasaporte;
 import edu.usal.negocio.Dominio.Provincia;
+import edu.usal.negocio.Dominio.Telefono;
 import edu.usal.negocio.Dominio.Vuelos;
 
 public class pruebaSQL {
@@ -34,20 +42,20 @@ public class pruebaSQL {
 		//-------------------LINEAS AEREAS-------------------------
 //		LineasAereasDAO lineas = new LineasAereasDAOImplementacionSQL();
 //		
-//		LineasAereas la4 = new LineasAereas(Alianzas.Adria_Airways, 1, "Adria Airways");
-//		LineasAereas la5 = new LineasAereas(Alianzas.Aerolíneas_Argentinas, 2, "Aerolineas Argentinas");
-//		LineasAereas la6 = new LineasAereas(Alianzas.Aeromexico, 3, "Aeromexico");
-//		LineasAereas la7 = new LineasAereas(Alianzas.Air_Europa, 4, "Air Europa");
-//		LineasAereas la8 = new LineasAereas(Alianzas.Air_New_Zealand_Link, 5, "Air New Zealand");
-//		LineasAereas la9 = new LineasAereas(Alianzas.American_Airlines, 6, "American Airlines");
-//		LineasAereas la10 = new LineasAereas(Alianzas.British_Airways, 7, "British Airlines");
-//		LineasAereas la11 = new LineasAereas(Alianzas.Delta_Air_Lines, 8, "Delta Airlines");
-//		LineasAereas la12 = new LineasAereas(Alianzas.LAN_Argentina, 9, "LAN");
-//		LineasAereas la13 = new LineasAereas(Alianzas.Qatar_Airways, 10, "Qatar Ariways");
-//		LineasAereas la14 = new LineasAereas(Alianzas.United_Airlines, 11, "United Airlines");
-//		LineasAereas la15 = new LineasAereas(Alianzas.Portugalia, 12, "Portugalia");
-//		LineasAereas la16 = new LineasAereas(Alianzas.Air_Mauritius, 13, "Maurito Airlines");
-//		LineasAereas la17 = new LineasAereas(Alianzas.KLM, 14, "KLM");
+		LineasAereas la4 = new LineasAereas(Alianzas.Adria_Airways, 1, "Adria Airways");
+		LineasAereas la5 = new LineasAereas(Alianzas.Aerolíneas_Argentinas, 2, "Aerolineas Argentinas");
+		LineasAereas la6 = new LineasAereas(Alianzas.Aeromexico, 3, "Aeromexico");
+		LineasAereas la7 = new LineasAereas(Alianzas.Air_Europa, 4, "Air Europa");
+		LineasAereas la8 = new LineasAereas(Alianzas.Air_New_Zealand_Link, 5, "Air New Zealand");
+		LineasAereas la9 = new LineasAereas(Alianzas.American_Airlines, 6, "American Airlines");
+		LineasAereas la10 = new LineasAereas(Alianzas.British_Airways, 7, "British Airlines");
+		LineasAereas la11 = new LineasAereas(Alianzas.Delta_Air_Lines, 8, "Delta Airlines");
+		LineasAereas la12 = new LineasAereas(Alianzas.LAN_Argentina, 9, "LAN");
+		LineasAereas la13 = new LineasAereas(Alianzas.Qatar_Airways, 10, "Qatar Ariways");
+		LineasAereas la14 = new LineasAereas(Alianzas.United_Airlines, 11, "United Airlines");
+		LineasAereas la15 = new LineasAereas(Alianzas.Portugalia, 12, "Portugalia");
+		LineasAereas la16 = new LineasAereas(Alianzas.Air_Mauritius, 13, "Maurito Airlines");
+		LineasAereas la17 = new LineasAereas(Alianzas.KLM, 14, "KLM");
 //		
 //		try {
 //			lineas.crearLineaAerea(la4);
@@ -109,8 +117,8 @@ public class pruebaSQL {
 		Pais pais2 = new Pais(2, "Estados Unidos");
 		Provincia prov2 = new Provincia(2, "Salta");
 		Provincia pr4 = new Provincia(4,"Los Angeles");
-		Aeropuerto AE11 = new Aeropuerto(1, "Buenos Aires", "JFK", pais1, prov1);
-		Aeropuerto AE12 = new Aeropuerto(2, "California", "LAX", pais2, prov2);
+		Aeropuerto AE11 = new Aeropuerto(1, "Buenos Aires", "JFK", pais1, prov1, null);
+		Aeropuerto AE12 = new Aeropuerto(2, "California", "LAX", pais2, prov2, null);
 		LineasAereas la1 = new LineasAereas(Alianzas.Aerolíneas_Argentinas, 2, "Aerolineas Argentinas");
 		Vuelos v1 = new Vuelos(1,"AA-0001",36,"8Hs",la1,AE11,AE12,hoy,hoy);
 		Pais p3 = new Pais(3,"Costa Rica");
@@ -247,7 +255,32 @@ public class pruebaSQL {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
+		
+		//-----------------------TEST CLIENTE Y SUS IMPL--------------------------------
+		
+		
+		Direccion dir1 = new Direccion(obtenerID.incrementarIdDireccion(), pais2, prov2, "Costa marfil", "Ricitos", "1433", "cmr33");
+		Direccion dir2 = new Direccion(obtenerID.incrementarIdDireccion(), pais1, prov1, "Pilar", "Falucho", "133", "ff33");
+		Telefono tel1 = new Telefono(obtenerID.incrementarIdTelefono(), "1133225588", "1133225588", "02304455823");
+		Telefono tel2 = new Telefono(obtenerID.incrementarIdTelefono(), "1100441199", "1132462590", "02304455823");
+		PasajeroFrecuente pf1 = new PasajeroFrecuente(obtenerID.incrementarIdPasajeroFrecuente(),"333", "VIP", la13, Alianzas.Qatar_Airways);
+		PasajeroFrecuente pf2 = new PasajeroFrecuente(obtenerID.incrementarIdPasajeroFrecuente(),"123", "VIP", la14, Alianzas.American_Airlines);
+		Pasaporte pasa1 = new Pasaporte(obtenerID.incrementarIdPasaporte(), "AAA-33442255", "Carlos Ruiz", "Argentina", hoy, hoy);
+		Pasaporte pasa2 = new Pasaporte(obtenerID.incrementarIdPasaporte(), "AAA-22143209", "Marcelo Tinille", "Argentina", hoy, hoy);
+		Cliente cli1 = new Cliente(obtenerID.incrementarIdCliente(), "Carlos Ruiz", "33442255", pasa1,"20-33442255-3", hoy, "Carlosruiz22@hotmail.com", tel1, pf1, dir1);
+		Cliente cli2 = new Cliente(obtenerID.incrementarIdCliente(), "Marcelo Tinille", "22143209", pasa2,"20-22143209-3", hoy, "Marcelotinille44@hotmail.com", tel2, pf2, dir2);
 
-
+		ClienteDAO clid = new ClienteDAOImplementacionSQL();
+		
+		try {
+//			clid.crearCliente(cli1);
+			clid.crearCliente(cli2);
+		} catch (ClassNotFoundException | IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

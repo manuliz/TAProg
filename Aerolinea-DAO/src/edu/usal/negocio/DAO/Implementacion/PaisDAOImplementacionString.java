@@ -57,4 +57,10 @@ public class PaisDAOImplementacionString implements PaisDAO{
 		
 	}
 
+	@Override
+	public Pais obtenerPais(int idPais) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

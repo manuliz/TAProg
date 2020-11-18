@@ -12,9 +12,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import edu.usal.Util.Conexion;
+import edu.usal.negocio.DAO.Interfaces.AeropuertoDAO;
 import edu.usal.negocio.DAO.Interfaces.LineasAereasDAO;
+import edu.usal.negocio.DAO.Interfaces.PaisDAO;
+import edu.usal.negocio.DAO.Interfaces.ProvinciaDAO;
 import edu.usal.negocio.DAO.Interfaces.VuelosDAO;
 import edu.usal.negocio.Dominio.Aeropuerto;
+import edu.usal.negocio.Dominio.Alianzas;
 import edu.usal.negocio.Dominio.LineasAereas;
 import edu.usal.negocio.Dominio.Vuelos;
 
@@ -24,6 +28,8 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 	private PreparedStatement pstm;
 	private String query;
 	private ResultSet rst;
+	PaisDAO pd = new PaisDAOImplementacionSQL();
+	ProvinciaDAO ppd = new ProvinciaDAOImplementacionSQL();
 	
 	private Timestamp DateATimestamp(java.util.Date d) {
 		Timestamp ts = new Timestamp(d.getTime());
@@ -35,15 +41,16 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 		return d;
 	}
 	
-	private LineasAereas intAlineaAerea(int id) {
-		LineasAereas ln1 = new LineasAereas(null,id,null);
-		return ln1;
+	private String Alianzas1 (Alianzas alianza) {
+		String alianza1 = String.valueOf(alianza);
+		return alianza1;
 	}
 	
-	private Aeropuerto intAaeropuerto(int id) {
-		Aeropuerto ae = new Aeropuerto(id, null,null,null,null);
-		return ae;
+	private Alianzas Alianzas2(String Stalianza) {
+		Alianzas al = Alianzas.valueOf(Stalianza);
+		return al;
 	}
+	
 
 	@Override
 	public Vuelos obtenerVuelo(String numVuelo) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
@@ -58,9 +65,9 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 			vu.setNumDeVuelos(rst.getString(2));
 			vu.setCantDeAsientos(rst.getInt(3));
 			vu.setTiempoDeVuelo(rst.getString(4));
-			vu.setLineaAerea(intAlineaAerea(rst.getInt(5)));
-			vu.setAeropuertoSalida(intAaeropuerto(rst.getInt(6)));
-			vu.setAeropuertoLlegada(intAaeropuerto(rst.getInt(7)));
+			vu.setLineaAerea(this.obtenerLineaAerea(rst.getInt(5)));
+			vu.setAeropuertoSalida(this.obtenerAeropuerto(rst.getInt(6)));
+			vu.setAeropuertoLlegada(this.obtenerAeropuerto(rst.getInt(7)));
 			vu.setFhSalida(TimestampADate(rst.getTimestamp(8)));
 			vu.setFhLlegada(TimestampADate(rst.getTimestamp(9)));
 		}
@@ -84,9 +91,9 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 			vue.setNumDeVuelos(rst.getString(2));
 			vue.setCantDeAsientos(rst.getInt(3));
 			vue.setTiempoDeVuelo(rst.getString(4));
-			vue.setLineaAerea(null);//puede ser null solo o usar el metodo intAlineasAereas
-			vue.setAeropuertoSalida(null);//puede ser null solo o usar el metodo intAaeropuerto (vamos a probar si anda en el mvc asi o con el metodo)
-			vue.setAeropuertoLlegada(null);//'''
+			vue.setLineaAerea(this.obtenerLineaAerea(rst.getInt(5)));//puede ser null solo o usar el metodo intAlineasAereas
+			vue.setAeropuertoSalida(this.obtenerAeropuerto(rst.getInt(6)));//puede ser null solo o usar el metodo intAaeropuerto (vamos a probar si anda en el mvc asi o con el metodo)
+			vue.setAeropuertoLlegada(this.obtenerAeropuerto(rst.getInt(7)));//'''
 			vue.setFhSalida(TimestampADate(rst.getTimestamp(8)));
 			vue.setFhLlegada(TimestampADate(rst.getTimestamp(9)));
 			lv.add(vue);
@@ -119,11 +126,11 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);	
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo completar la transaccion.");
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+			System.out.println("No se pudo completar la transaccion.");}
 	}
 
 	@Override
@@ -174,6 +181,44 @@ public class VuelosDAOImplementacionSQL implements VuelosDAO{
 			Conexion.cerrarConexion(conn);
 		}
 		
+	}
+	
+	private LineasAereas obtenerLineaAerea(int idLineaAerea) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+		query="SELECT * FROM bdaerolinea.aerolinea WHERE IDAerolinea=?";
+		LineasAereas aero = new LineasAereas();
+		conn=Conexion.obtenerConexion();
+		pstm=conn.prepareStatement(query);
+		pstm.setInt(1, idLineaAerea);
+		rst=pstm.executeQuery();
+		while(rst.next()) {
+			aero.setAlianzas(Alianzas2(rst.getString(1)));
+			aero.setIdLineasAereas(rst.getInt(2));
+			aero.setNombreAerolinea(rst.getString(3));
+		}
+		Conexion.cerrarResultSet(rst);
+		Conexion.cerrarPrepStatement(pstm);
+		return aero;
+	}
+	
+	private Aeropuerto obtenerAeropuerto(int idCiudad) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException {
+		query="SELECT * FROM bdaerolinea.aeropuerto WHERE idAeropuerto=?";
+		Aeropuerto ae = new Aeropuerto();
+		conn=Conexion.obtenerConexion();
+		pstm=conn.prepareStatement(query);
+		pstm.setInt(1, idCiudad);
+		rst=pstm.executeQuery();
+		while(rst.next()) {
+			ae.setIdAeropuerto(idCiudad);
+			ae.setCiudad(rst.getString(2));
+			ae.setIdentificacionAeropuerto(rst.getString(3));
+			ae.setPais(pd.obtenerPais(rst.getInt(4)));
+			ae.setProvincia(ppd.obtenerProvincia(rst.getInt(5)));
+			ae.setProvOtro(rst.getString(6));
+		}
+		
+		Conexion.cerrarResultSet(rst);
+		Conexion.cerrarPrepStatement(pstm);		
+		return ae;
 	}
 
 }

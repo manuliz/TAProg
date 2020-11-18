@@ -46,7 +46,6 @@ public class PasaporteDAOImplementacionSQL implements PasaporteDAO{
 		}
 		Conexion.cerrarPrepStatement(pstm);
 		Conexion.cerrarResultSet(rst);
-		Conexion.cerrarConexion(conn);
 		return pasap;
 	}
 	
@@ -65,12 +64,11 @@ public class PasaporteDAOImplementacionSQL implements PasaporteDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se puedo generar el pasaporte.");
+			System.out.println("No se pudo generar el pasaporte.");}
 	}
 	
 	public void actualizarPasaporte(Cliente cliente) throws ClassNotFoundException, SQLException {
@@ -89,12 +87,11 @@ public class PasaporteDAOImplementacionSQL implements PasaporteDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo actualizar el pasaporte!");
+			System.out.println("No se pudo actualizar el pasaporte!");}
 	}
 	
 	public void eliminarPasaporte(Cliente cliente) throws ClassNotFoundException, SQLException {
@@ -107,11 +104,10 @@ public class PasaporteDAOImplementacionSQL implements PasaporteDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo eliminar el pasaporte!");
+			System.out.println("No se pudo eliminar el pasaporte!");}
 	}
 }

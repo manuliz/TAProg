@@ -49,7 +49,6 @@ public class PaisDAOImplementacionSQL implements PaisDAO{
 		}
 		Conexion.cerrarPrepStatement(pstm);
 		Conexion.cerrarResultSet(rst);
-		Conexion.cerrarConexion(conn);
 		return Pai;
 	}
 

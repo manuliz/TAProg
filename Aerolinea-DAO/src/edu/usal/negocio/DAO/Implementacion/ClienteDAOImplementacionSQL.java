@@ -103,7 +103,7 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 
 	@Override
 	public void crearCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-		query="INSERT INTO bdaerolinea.cliente VALUES(?,?,?,?,?,?,?,?)";
+		query="INSERT INTO bdaerolinea.cliente VALUES(?,?,?,?,?,?,?,?,?,?)";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
 		pstm=conn.prepareStatement(query);
@@ -126,11 +126,11 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se puedo generar el cliente.");
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+			System.out.println("No se pudo generar el cliente.");}
 		
 	}
 	
@@ -159,11 +159,11 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo actualizar el cliente!");
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+			System.out.println("No se pudo actualizar el cliente!");}
 		
 	}
 	
@@ -183,11 +183,11 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-		}
-		conn.rollback();
-		Conexion.cerrarPrepStatement(pstm);
-		Conexion.cerrarConexion(conn);
-		System.out.println("No se pudo eliminar al cliente!");
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+			System.out.println("No se pudo eliminar al cliente!");}
 		
 	}
 	
