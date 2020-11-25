@@ -9,6 +9,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import edu.usal.Util.obtenerID;
+import edu.usal.negocio.DAO.Factory.ClienteFactory;
 import edu.usal.negocio.DAO.Implementacion.AeropuertoDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.ClienteDAOImplementacionSQL;
 import edu.usal.negocio.DAO.Implementacion.LineasAereasDAOImplementacionSQL;
@@ -260,26 +261,64 @@ public class pruebaSQL {
 		//-----------------------TEST CLIENTE Y SUS IMPL--------------------------------
 		
 		
-		Direccion dir1 = new Direccion(obtenerID.incrementarIdDireccion(), pais2, prov2, "Costa marfil", "Ricitos", "1433", "cmr33");
-		Direccion dir2 = new Direccion(obtenerID.incrementarIdDireccion(), pais1, prov1, "Pilar", "Falucho", "133", "ff33");
-		Telefono tel1 = new Telefono(obtenerID.incrementarIdTelefono(), "1133225588", "1133225588", "02304455823");
-		Telefono tel2 = new Telefono(obtenerID.incrementarIdTelefono(), "1100441199", "1132462590", "02304455823");
-		PasajeroFrecuente pf1 = new PasajeroFrecuente(obtenerID.incrementarIdPasajeroFrecuente(),"333", "VIP", la13, Alianzas.Qatar_Airways);
-		PasajeroFrecuente pf2 = new PasajeroFrecuente(obtenerID.incrementarIdPasajeroFrecuente(),"123", "VIP", la14, Alianzas.American_Airlines);
-		Pasaporte pasa1 = new Pasaporte(obtenerID.incrementarIdPasaporte(), "AAA-33442255", "Carlos Ruiz", "Argentina", hoy, hoy);
-		Pasaporte pasa2 = new Pasaporte(obtenerID.incrementarIdPasaporte(), "AAA-22143209", "Marcelo Tinille", "Argentina", hoy, hoy);
-		Cliente cli1 = new Cliente(obtenerID.incrementarIdCliente(), "Carlos Ruiz", "33442255", pasa1,"20-33442255-3", hoy, "Carlosruiz22@hotmail.com", tel1, pf1, dir1);
-		Cliente cli2 = new Cliente(obtenerID.incrementarIdCliente(), "Marcelo Tinille", "22143209", pasa2,"20-22143209-3", hoy, "Marcelotinille44@hotmail.com", tel2, pf2, dir2);
+		Direccion dir1 = new Direccion(1, pais2, prov2, "Costa marfil", "Ricitos", "1433", "cmr33");
+		Direccion dir2 = new Direccion(2, pais1, prov1, "Pilar", "Caamaño", "250", "ff250");
+		Telefono tel1 = new Telefono(1, "1133225588", "1133225588", "02304455823");
+		Telefono tel2 = new Telefono(2, "1100441199", "1123000000", "02304455823");
+		PasajeroFrecuente pf1 = new PasajeroFrecuente(1,"333", "VIP", la13, Alianzas.Qatar_Airways);
+		PasajeroFrecuente pf2 = new PasajeroFrecuente(2,"123", "GENERAL", la14, Alianzas.American_Airlines);
+		Pasaporte pasa1 = new Pasaporte(1, "AAA-33442255", "Carlos Ruiz", "Argentina", hoy, hoy);
+		Pasaporte pasa2 = new Pasaporte(2, "AAA-22001100", "Marcelo Tinille", "Bolivia", hoy, hoy);
+		Cliente cli1 = new Cliente(1, "Carlos Ruiz", "33442255", pasa1,"20-33442255-3", hoy, "Carlosruiz22@hotmail.com", tel1, pf1, dir1);
+		Cliente cli2 = new Cliente(2, "Marcelo Tinille","22143209", pasa2,"20-22001100-3", hoy, "Marcelotinille44@hotmail.com", tel2, pf2, dir2);
 
 		ClienteDAO clid = new ClienteDAOImplementacionSQL();
 		
-		try {
+		
+//		try {
 //			clid.crearCliente(cli1);
-			clid.crearCliente(cli2);
-		} catch (ClassNotFoundException | IOException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//			clid.crearCliente(cli2);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			clid.actualizarCliente(cli2);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+		
+//		try {
+//			clid.eliminarCliente(cli2);
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			Cliente cl = clid.obtenerCliente("33442255");
+//			Cliente cll = clid.obtenerCliente("22143209");
+//			System.out.println("Cliente 1 :"+cl+"/n Cliente 2:"+cll);
+//			
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+	
+//		try {
+//			List<Cliente> li = clid.obtenerClientes();
+//			for(Cliente a : li) {
+//				System.out.println(a.toString());
+//			}
+//		} catch (ClassNotFoundException | IOException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
 		
 		
 	}

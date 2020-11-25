@@ -12,6 +12,6 @@ public interface PasajeroFrecuenteDAO {
 	PasajeroFrecuente obtenerPasajeroFrecuente(int idPasajeroFrecuente) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException;
 	void crearPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException;
 	void actualizarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException;
-	void eliminarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException;
+	boolean eliminarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException;
 
 }

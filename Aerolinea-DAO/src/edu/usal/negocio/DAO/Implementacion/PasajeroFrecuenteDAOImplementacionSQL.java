@@ -43,7 +43,7 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 			pf.setIdPasajeroFrecuente(rst.getInt(1));
 			pf.setNumero(rst.getString(2));
 			pf.setCategoria(rst.getString(3));
-			pf.setAerolinea(this.obtenerLineaAerea(rst.getInt(4)));
+			pf.setAerolinea(this.obtenerLineaAerea(rst.getInt(4),rst,pstm,conn));
 			pf.setAlianzas(Alianzas2(rst.getString(5)));
 		}
 		Conexion.cerrarPrepStatement(pstm);
@@ -94,37 +94,39 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 			System.out.println("No se pudo actualizar el numero de pasajero frecuente!");}
 	}
 	
-	public void eliminarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public boolean eliminarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException {
 		query="DELETE FROM bdaerolinea.pasajerofrecuente WHERE idPasajeroFrecuente=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
 		pstm=conn.prepareStatement(query);
-		pstm.setInt(2, cliente.getNumPasajeroFrec().getIdPasajeroFrecuente());
+		pstm.setInt(1, cliente.getNumPasajeroFrec().getIdPasajeroFrecuente());
 		int pos = pstm.executeUpdate();
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+			return true;
 		} else { 
 			conn.rollback();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-			System.out.println("No se pudo elimina el pasajero frecuente!");}
+			System.out.println("No se pudo elimina el pasajero frecuente!");
+			return false;
+		}
 	}
 	
-	private LineasAereas obtenerLineaAerea(int idLineaAerea) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+	private LineasAereas obtenerLineaAerea(int idLineaAerea, ResultSet rs, PreparedStatement ps, Connection co) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		query="SELECT * FROM bdaerolinea.aerolinea WHERE IDAerolinea=?";
 		LineasAereas aero = new LineasAereas();
-		conn=Conexion.obtenerConexion();
-		pstm=conn.prepareStatement(query);
-		pstm.setInt(1, idLineaAerea);
-		rst=pstm.executeQuery();
-		while(rst.next()) {
-			aero.setAlianzas(Alianzas2(rst.getString(1)));
-			aero.setIdLineasAereas(rst.getInt(2));
-			aero.setNombreAerolinea(rst.getString(3));
+		ps=co.prepareStatement(query);
+		ps.setInt(1, idLineaAerea);
+		rs=ps.executeQuery();
+		while(rs.next()) {
+			aero.setAlianzas(Alianzas2(rs.getString(1)));
+			aero.setIdLineasAereas(rs.getInt(2));
+			aero.setNombreAerolinea(rs.getString(3));
 		}
-		Conexion.cerrarResultSet(rst);
-		Conexion.cerrarPrepStatement(pstm);
+		Conexion.cerrarPrepStatement(ps);
+		Conexion.cerrarResultSet(rs);
 		return aero;
 	}
 }

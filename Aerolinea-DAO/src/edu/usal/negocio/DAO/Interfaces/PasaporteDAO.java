@@ -11,6 +11,6 @@ public interface PasaporteDAO {
 	Pasaporte obtenerPasaporte(int idPasaporte) throws ClassNotFoundException, SQLException;
 	void crearPasaporte(Cliente cliente) throws ClassNotFoundException, SQLException;
 	void actualizarPasaporte(Cliente cliente) throws ClassNotFoundException, SQLException;
-	void eliminarPasaporte(Cliente cliente) throws ClassNotFoundException, SQLException;
+	boolean eliminarPasaporte(Cliente cliente) throws ClassNotFoundException, SQLException;
 
 }

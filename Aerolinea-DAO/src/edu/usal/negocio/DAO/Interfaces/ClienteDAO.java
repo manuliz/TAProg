@@ -13,6 +13,6 @@ public interface ClienteDAO {
 	List<Cliente> obtenerClientes() throws IOException, FileNotFoundException, ClassNotFoundException, SQLException;
 	void crearCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
 	void actualizarCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
-	void eliminarCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
+	boolean eliminarCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;
 
 }

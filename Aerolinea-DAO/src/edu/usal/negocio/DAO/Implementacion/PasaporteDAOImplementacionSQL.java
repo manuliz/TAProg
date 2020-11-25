@@ -94,7 +94,7 @@ public class PasaporteDAOImplementacionSQL implements PasaporteDAO{
 			System.out.println("No se pudo actualizar el pasaporte!");}
 	}
 	
-	public void eliminarPasaporte(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public boolean eliminarPasaporte(Cliente cliente) throws ClassNotFoundException, SQLException {
 		query="DELETE FROM bdaerolinea.pasaporte WHERE idPasaporte=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -104,10 +104,13 @@ public class PasaporteDAOImplementacionSQL implements PasaporteDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+			return true;
 		} else {
 			conn.rollback();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-			System.out.println("No se pudo eliminar el pasaporte!");}
+			System.out.println("No se pudo eliminar el pasaporte!");
+			return false;
+			}
 	}
 }

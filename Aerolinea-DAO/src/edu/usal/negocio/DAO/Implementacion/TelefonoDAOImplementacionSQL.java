@@ -75,7 +75,7 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 			System.out.println("No se pudo actualizar el telefono!");}
 	}
 	
-	public void eliminarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public boolean eliminarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException {
 		query="DELETE FROM bdaerolinea.telefono WHERE idTelefono=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -85,11 +85,14 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+			return true;
 		} else {
 			conn.rollback();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-			System.out.println("No se pudo eliminar el telefono!");}
+			System.out.println("No se pudo eliminar el telefono!");
+			return false;
+		}
 	}
 
 }

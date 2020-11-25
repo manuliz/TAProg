@@ -136,24 +136,25 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 	
 	@Override
 	public void actualizarCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-		query="UPDATE bdaerolinea.cliente SET nombreApellido=?, idPasaporte=?, cuit-cuil=?, fechaNacimiento=?, eMail=?, idTelefono=?,"
+		query="UPDATE bdaerolinea.cliente SET idCliente=?, nombreApellido=?, idPasaporte=?, cuitCuil=?, fechaNacimiento=?, eMail=?, idTelefono=?,"
 				+ " idPasajeroFrecuente=?, idDireccion=? WHERE dni=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
 		pstm=conn.prepareStatement(query);
-		pstm.setString(1, cliente.getNombreApellido());
+		pstm.setInt(1, cliente.getIdCliente());
+		pstm.setString(2, cliente.getNombreApellido());
 		pd.actualizarPasaporte(cliente);
-		pstm.setInt(2,  cliente.getPasaporte().getIdPasaporte());
-		pstm.setString(3, cliente.getCuit_cuil());
-		pstm.setTimestamp(4, DateATimestamp(cliente.getFechaNac()));
-		pstm.setString(5, cliente.geteMail());
+		pstm.setInt(3, cliente.getPasaporte().getIdPasaporte());
+		pstm.setString(4, cliente.getCuit_cuil());
+		pstm.setTimestamp(5, DateATimestamp(cliente.getFechaNac()));
+		pstm.setString(6, cliente.geteMail());
 		td.actualizarTelefono(cliente);
-		pstm.setInt(6, cliente.getTelefono().getIdTelefono());
+		pstm.setInt(7, cliente.getTelefono().getIdTelefono());
 		pfd.actualizarPasajeroFrecuente(cliente);
-		pstm.setInt(7,cliente.getNumPasajeroFrec().getIdPasajeroFrecuente());
+		pstm.setInt(8,cliente.getNumPasajeroFrec().getIdPasajeroFrecuente());
 		dd.actualizarDireccion(cliente);
-		pstm.setInt(8, cliente.getDireccion().getIdDireccion());
-		pstm.setString(9, cliente.getDni());
+		pstm.setInt(9, cliente.getDireccion().getIdDireccion());
+		pstm.setString(10, cliente.getDni());
 		int pos = pstm.executeUpdate();
 		if(pos==1) {
 			conn.commit();
@@ -168,27 +169,48 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 	}
 	
 	@Override
-	public void eliminarCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-		query="DELETE FROM bdaerolinea.cliente WHERE dni=?";
-		conn=Conexion.obtenerConexion();
-		conn.setAutoCommit(false);
-		pstm=conn.prepareStatement(query);
-		pstm.setString(1, cliente.getDni());
-		pd.eliminarPasaporte(cliente);
-		td.eliminarTelefono(cliente);
-		pfd.eliminarPasajeroFrecuente(cliente);
-		dd.eliminarDireccion(cliente);
-		int pos = pstm.executeUpdate();
-		if(pos==1) {
-			conn.commit();
-			Conexion.cerrarPrepStatement(pstm);
-			Conexion.cerrarConexion(conn);
+	public boolean eliminarCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+		if(this.eliminarCliente2(cliente) == true) {
+			if(pd.eliminarPasaporte(cliente) == true && td.eliminarTelefono(cliente) == true && pfd.eliminarPasajeroFrecuente(cliente) == true && dd.eliminarDireccion(cliente) == true) {
+				conn.commit();
+				Conexion.cerrarPrepStatement(pstm);
+				Conexion.cerrarConexion(conn);
+				return true;
 		} else {
 			conn.rollback();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-			System.out.println("No se pudo eliminar al cliente!");}
-		
+			System.out.println("No se pudo eliminar al cliente!");
+			return false;
+		 }
+		} else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+			System.out.println("No se pudo eliminar al cliente!");
+			return false;
+		}
 	}
 	
+	private boolean eliminarCliente2(Cliente cliente) throws ClassNotFoundException, SQLException {
+		query="DELETE FROM bdaerolinea.cliente WHERE dni=?";
+		conn=Conexion.obtenerConexion();
+		conn.setAutoCommit(false);
+		pstm=conn.prepareStatement(query);		
+		pstm.setString(1, cliente.getDni());
+		int pos = pstm.executeUpdate();
+		if(pos==1) {
+			conn.commit();
+			Conexion.cerrarPrepStatement(pstm);
+			return true;
+		 } else {
+			conn.rollback();
+			Conexion.cerrarPrepStatement(pstm);
+			Conexion.cerrarConexion(conn);
+			System.out.println("No se pudo eliminar al cliente!");
+			return false;
+		 }
+		
+	}
 }
+	

@@ -10,6 +10,6 @@ public interface TelefonoDAO {
 	Telefono obtenerTelefono(int idTelefono) throws ClassNotFoundException, SQLException;
 	void crearTelefono(Cliente cliente) throws ClassNotFoundException, SQLException;
 	void actualizarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException;
-	void eliminarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException;
+	boolean eliminarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException;
 
 }

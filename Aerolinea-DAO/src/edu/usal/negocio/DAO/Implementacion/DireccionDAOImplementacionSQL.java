@@ -47,6 +47,7 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 	public void actualizarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException {
 		query="UPDATE bdaerolinea.direccion SET idPais=?, idProvincia=?, ciudad=?, calle=?, altura=?, codPostal=? WHERE idDireccion=?";
 		conn=Conexion.obtenerConexion();
+		conn.setAutoCommit(false);
 		pstm=conn.prepareStatement(query);
 		pstm.setInt(1, cliente.getDireccion().getPais().getIdPais());
 		pstm.setInt(2, cliente.getDireccion().getProv().getIdProvincia());
@@ -66,7 +67,7 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 			System.out.println("No se pudo actualizar la direccion!");}
 	}
 	
-	public void eliminarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public boolean eliminarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException {
 		query="DELETE FROM bdaerolinea.direccion WHERE idDireccion=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -76,11 +77,14 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 		if(pos==1) {
 			conn.commit();
 			Conexion.cerrarPrepStatement(pstm);
+			return true;
 		} else {
 			conn.rollback();
 			Conexion.cerrarPrepStatement(pstm);
 			Conexion.cerrarConexion(conn);
-			System.out.println("No se pudo eliminar la direccion!");}
+			System.out.println("No se pudo eliminar la direccion!");
+			return false;
+			}
 	}
 
 	@Override

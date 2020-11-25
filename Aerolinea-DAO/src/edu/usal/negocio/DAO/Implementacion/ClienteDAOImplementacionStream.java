@@ -109,21 +109,21 @@ public class ClienteDAOImplementacionStream implements ClienteDAO{
 	}
 
 	@Override
-	public void eliminarCliente(Cliente cliente) throws FileNotFoundException, IOException {
+	public boolean eliminarCliente(Cliente cliente) throws FileNotFoundException, IOException {
 		List<Cliente> lista4 = this.obtenerClientes();
 		
 		if(lista4.isEmpty()) {
-			return;
+			return false;
 		}else {
 			for(Cliente a: lista4) {
 				if(a.getDni().equals(cliente.getDni()) || a.getCuit_cuil().equals(cliente.getCuit_cuil())){
 					lista4.remove(a);
 					this.guardar(lista4);
-					return;
+					return true;
 				}
 			}
 		}
-		
+		return false;
 	}
 
 }

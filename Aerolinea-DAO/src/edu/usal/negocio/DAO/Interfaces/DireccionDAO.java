@@ -10,6 +10,6 @@ public interface DireccionDAO {
 	Direccion obtenerDireccion(int idDireccion) throws ClassNotFoundException, SQLException;
 	void crearDireccion(Cliente cliente) throws ClassNotFoundException, SQLException;
 	void actualizarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException;
-	void eliminarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException;
+	boolean eliminarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException;
 
 }
