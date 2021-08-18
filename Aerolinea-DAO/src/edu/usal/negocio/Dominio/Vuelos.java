@@ -13,8 +13,8 @@ public class Vuelos implements Serializable{
 	private int asientosDisponibles;
 	private String tiempoDeVuelo;
 	private LineasAereas lineaAerea;
-	Aeropuerto aeropuertoSalida;
-	Aeropuerto aeropuertoLlegada;
+	private Aeropuerto aeropuertoSalida;
+	private Aeropuerto aeropuertoLlegada;
 	private Date fhSalida;
 	private Date fhLlegada;
 	private List<Cliente> lcli;

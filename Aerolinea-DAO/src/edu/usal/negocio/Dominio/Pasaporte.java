@@ -9,11 +9,11 @@ public class Pasaporte implements Serializable{
 	private int idPasaporte;
 	private String numDePasaporte;
 	private String autoridadDeEmision;
-	private String paisDeEmision;
+	private Pais paisDeEmision;
 	private Date fechaEmision;
 	private Date fechaVencimiento;
 	
-	public Pasaporte(int idPasaporte, String numDePasaporte, String autoridadDeEmision, String paisDeEmision,
+	public Pasaporte(int idPasaporte, String numDePasaporte, String autoridadDeEmision, Pais paisDeEmision,
 			Date fechaEmision, Date fechaVencimiento) {
 		super();
 		this.idPasaporte = idPasaporte;
@@ -52,11 +52,11 @@ public class Pasaporte implements Serializable{
 		this.autoridadDeEmision = autoridadDeEmision;
 	}
 
-	public String getPaisDeEmision() {
+	public Pais getPaisDeEmision() {
 		return paisDeEmision;
 	}
 
-	public void setPaisDeEmision(String paisDeEmision) {
+	public void setPaisDeEmision(Pais paisDeEmision) {
 		this.paisDeEmision = paisDeEmision;
 	}
 

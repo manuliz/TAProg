@@ -1,13 +1,17 @@
 package edu.usal.main;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Formatter;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.StringTokenizer;
 
+import edu.usal.Util.obtenerID;
 import edu.usal.negocio.DAO.Implementacion.AeropuertoDAOImplementacionStream;
 import edu.usal.negocio.DAO.Implementacion.AlianzasDAOImplementacionString;
 import edu.usal.negocio.DAO.Implementacion.ClienteDAOImplementacionStream;
@@ -44,10 +48,12 @@ public static void main(String[] args) {
 //		Date hoy = Calendar.getInstance().getTime();
 		
 //		// CLIENTE 1
-//		Pais pais1 = new Pais(1, "Argentina");
-//		Provincia prov1 = new Provincia(1, "Catamarca");
-//		Aeropuerto AE11 = new Aeropuerto(1, "BSAS", "JFK", pais1, prov1);
-//		Aeropuerto AE12 = new Aeropuerto(2, "CATAMARCA", "CATA", pais1, prov1);
+//		Pais pais1 = new Pais(3, "Estados Unidos");
+//		Provincia prov1 = new Provincia(3, "Miami");
+//		Pais pais4 = new Pais(4, "Brasil");
+//		Provincia prov4 = new Provincia(4, "Santa catarina");
+//		Aeropuerto AE11 = new Aeropuerto(3, "Florida", "FLD", pais1, prov1, null);
+//		Aeropuerto AE12 = new Aeropuerto(5, "Florianopolis", "FNP", pais4, prov4, null);
 ////		Vuelos v1 = new Vuelos(1, 2223, 1244, "12hs", AE11, AE12);
 //		LineasAereas la1 = new LineasAereas(Alianzas.Airlink, 1, "ZALALLALA");
 //		Pasaporte pasa1 = new Pasaporte(1, "40643145", "Albertito fernandu", "Argentina", hoy, hoy );
@@ -58,10 +64,12 @@ public static void main(String[] args) {
 //		Cliente cli1 = new Cliente(1,"Manuel Liz", "40643145", pasa1, "20-40643145-2", hoy, "manuel@hotmail.com", telef1, pasajfrec1, Direc1);
 //		
 //		//CLIENTE 2
-//		Pais pais2 = new Pais(2, "Russia");
-//		Provincia prov2 = new Provincia(2, "Moscow");		
-//		Aeropuerto AE21 = new Aeropuerto(2, "ASDASD", "ASDCC", pais2, prov2);
-//		Aeropuerto AE22 = new Aeropuerto(2, "CASARARARAS", "CUTU", pais2, prov2);
+//		Pais pais2 = new Pais(3, "Estados Unidos");
+//		Provincia prov2 = new Provincia(3, "California");	
+//		Pais pais3 = new Pais(4, "Uruguay");
+//		Provincia prov3 = new Provincia(4, "Montevideo");
+//		Aeropuerto AE21 = new Aeropuerto(6, "Los angeles", "LAX", pais2, prov2, null);
+//		Aeropuerto AE22 = new Aeropuerto(7, "Punta del este", "PES", pais3, prov3, null);
 ////		Vuelos v2 = new Vuelos(2, 11231, 231, "23hs", AE21, AE22);
 //		LineasAereas la2 = new LineasAereas(Alianzas.Dragonair, 2, "iiiiLAZuZuZA");
 //		Pasaporte pasa2 = new Pasaporte(2, "40608090", "Bladimir flor de putin", "Russia", hoy, hoy );
@@ -156,24 +164,62 @@ public static void main(String[] args) {
 //			e.printStackTrace();
 //		}
 		
-		LineasAereasDAO lineas = new LineasAereasDAOImplementacionStream();
-//		LineasAereas la4 = new LineasAereas(Alianzas.Adria_Airways, 1, "Adria Airways");
-//		LineasAereas la5 = new LineasAereas(Alianzas.Aerolíneas_Argentinas, 2, "Aerolineas Argentinas");
-//		LineasAereas la6 = new LineasAereas(Alianzas.Aeromexico, 3, "Aeromexico");
-//		LineasAereas la7 = new LineasAereas(Alianzas.Air_Europa, 4, "Air Europa");
-//		LineasAereas la8 = new LineasAereas(Alianzas.Air_New_Zealand_Link, 5, "Air New Zealand");
-//		LineasAereas la9 = new LineasAereas(Alianzas.American_Airlines, 6, "American Airlines");
-//		LineasAereas la10 = new LineasAereas(Alianzas.British_Airways, 7, "British Airlines");
-//		LineasAereas la11 = new LineasAereas(Alianzas.Delta_Air_Lines, 8, "Delta Airlines");
-//		LineasAereas la12 = new LineasAereas(Alianzas.LAN_Argentina, 9, "LAN");
-//		LineasAereas la13 = new LineasAereas(Alianzas.Qatar_Airways, 10, "Qatar Ariways");
-//		LineasAereas la14 = new LineasAereas(Alianzas.United_Airlines, 11, "United Airlines");
-//		LineasAereas la15 = new LineasAereas(Alianzas.Portugalia, 12, "Portugalia");
-//		LineasAereas la16 = new LineasAereas(Alianzas.Air_Mauritius, 13, "Maurito Airlines");
-//		LineasAereas la17 = new LineasAereas(Alianzas.KLM, 14, "KLM");
+//		LineasAereasDAO lineas = new LineasAereasDAOImplementacionStream();
+		
+//		LineasAereas la21 = new LineasAereas(Alianzas.Air_Berlin,0,"Air Berlin") ;
+//		LineasAereas la22 = new LineasAereas(Alianzas.Aeroflot,1,"Aeroflot"); 
+//		LineasAereas la23 = new LineasAereas(Alianzas.Adria_Airways,2,"Adria Airways") ;
+//		LineasAereas la24 = new LineasAereas(Alianzas.Niki,3,"Niki");
+//		LineasAereas la25 = new LineasAereas(Alianzas.Aerolineas_Argentinas,4,"Aerolíneas Argentinas");
+//		LineasAereas la26 = new LineasAereas(Alianzas.Aegean_Airlines,5,"Aegean Airlines"); 
+//		LineasAereas la27 = new LineasAereas(Alianzas.American_Airlines,6,"American Airlines");
+//		LineasAereas la28 = new LineasAereas(Alianzas.Austral_Lineas_Aereas,7,"Austral Líneas Aéreas"); 
+//		LineasAereas la29 = new LineasAereas(Alianzas.Olympic_Air,8,"Olympic Air") ;
+//		LineasAereas la30 = new LineasAereas(Alianzas.American_Eagle,9,"American Eagle") ;
+//		LineasAereas la31 = new LineasAereas(Alianzas.Aeromexico,10,"Aeromexico");
+//		LineasAereas la32 = new LineasAereas(Alianzas.Air_Canada,11,"Air Canada"); 
+//		LineasAereas la33 = new LineasAereas(Alianzas.US_Airways,12,"US Airways");
+//		LineasAereas la34 = new LineasAereas(Alianzas.Aeromexico_Connect,13,"Aeroméxico Connect") ;
+//		LineasAereas la35 = new LineasAereas(Alianzas.Air_Canada_Express,14,"Air Canada Express"); 
+//		LineasAereas la36 = new LineasAereas(Alianzas.US_Airways_Express,15,"US Airways Express"); 
+//		LineasAereas la37 = new LineasAereas(Alianzas.Air_Europa,16,"Air Europa");
+//		LineasAereas la38 = new LineasAereas(Alianzas.Air_Canada_Rouge,17,"Air Canada Rouge");
+//		LineasAereas la39 = new LineasAereas(Alianzas.US_Airways_Shuttle,18,"US Airways Shuttle");
+//		LineasAereas la40 = new LineasAereas(Alianzas.Air_France,19,"Air France");
+//		LineasAereas la1 = new LineasAereas(Alianzas.Air_China,20,"Air China") ;
+//		LineasAereas la2 = new LineasAereas(Alianzas.British_Airways,21,"British Airways"); 
+//		LineasAereas la3 = new LineasAereas(Alianzas.Alitalia,22,"Alitalia") ;
+//		LineasAereas la4 = new LineasAereas(Alianzas.Dalian_Airlines,23,"Dalian Airlines");
+//		LineasAereas la5 = new LineasAereas(Alianzas.BA_CityFlyer,24,"BA CityFlyer");
+//		LineasAereas la6 = new LineasAereas(Alianzas.China_Airlines,25,"China Airlines"); 
+//		LineasAereas la7 = new LineasAereas(Alianzas.Air_India,26,"Air India");
+//		LineasAereas la8 = new LineasAereas(Alianzas.British_Airways_Limited,27,"British Airways Limited"); 
+//		LineasAereas la9 = new LineasAereas(Alianzas.Mandarin_Airlines,28,"Mandarin Airlines") ;
+//		LineasAereas la10 = new LineasAereas(Alianzas.Air_India_Regional,29,"Air India Regional") ;
+//		LineasAereas la11 = new LineasAereas(Alianzas.Comair,30,"Comair");
+//		LineasAereas la12 = new LineasAereas(Alianzas.China_Eastern_Airlines,31,"China Eastern Airlines"); 
+//		LineasAereas la13 = new LineasAereas(Alianzas.Air_New_Zealand,32,"Air New Zealand");
+//		LineasAereas la14 = new LineasAereas(Alianzas.OpenSkies,33,"OpenSkies") ;
+//		LineasAereas la15 = new LineasAereas(Alianzas.Shanghai_Airlines,34,"Shanghai Airlines"); 
+//		LineasAereas la16 = new LineasAereas(Alianzas.Air_New_Zealand_Link,35,"Air New Zealand Link"); 
+//		LineasAereas la17 = new LineasAereas(Alianzas.Sun_Air,36,"Sun-Air");
+//		LineasAereas la18 = new LineasAereas(Alianzas.China_Southern_Airlines,37,"China Southern Airlines");
+//		LineasAereas la19 = new LineasAereas(Alianzas.All_Nippon_Airways,38,"All Nippon Airways");
+//		LineasAereas la20 = new LineasAereas(Alianzas.Cathay_Pacific,39,"Cathay Pacific");
 	
 		
 //				try {
+
+//					lineas.crearLineaAerea(la35);
+//					lineas.crearLineaAerea(la36);
+//					lineas.crearLineaAerea(la37);
+//					lineas.crearLineaAerea(la38);
+//					lineas.crearLineaAerea(la39);
+//					lineas.crearLineaAerea(la40);
+//					lineas.crearLineaAerea(la20);
+//					lineas.crearLineaAerea(la1);
+//					lineas.crearLineaAerea(la2);
+//					lineas.crearLineaAerea(la3);
 //					lineas.crearLineaAerea(la4);
 //					lineas.crearLineaAerea(la5);
 //					lineas.crearLineaAerea(la6);
@@ -188,6 +234,9 @@ public static void main(String[] args) {
 //					lineas.crearLineaAerea(la15);
 //					lineas.crearLineaAerea(la16);
 //					lineas.crearLineaAerea(la17);
+//					lineas.crearLineaAerea(la18);
+//					lineas.crearLineaAerea(la19);
+//					lineas.crearLineaAerea(la20);
 //				} catch (ClassNotFoundException | IOException | SQLException e1) {
 //					// TODO Auto-generated catch block
 //					e1.printStackTrace();
@@ -195,26 +244,28 @@ public static void main(String[] args) {
 
 		
 //		try {
-//			lineas.actualizarLineaAerea(la2);
-//		} catch (IOException e) {
+//			lineas.actualizarLineaAerea(la1);
+//		} catch (IOException | ClassNotFoundException | SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 		
 //		try {
-//			lineas.eliminarLineaAerea(la1);
-//		} catch (IOException e) {
+//			lineas.eliminarLineaAerea(41);
+//		} catch (IOException | ClassNotFoundException | SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 		
+	
 //		try {
-//			LineasAereas linea1 = lineas.obtenerLineaAerea(2);
-//			System.out.println(linea1.toString());
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+//				LineasAereas linea1 = lineas.obtenerLineaAerea(2);
+//				System.out.println(linea1.toString());
+//			} catch (ClassNotFoundException | SQLException | IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+
 		
 
 //		try {
@@ -232,25 +283,78 @@ public static void main(String[] args) {
 //		AeropuertoDAO aero = new AeropuertoDAOImplementacionStream();
 //		VentasDAO ven = new VentasDAOImplementacionStream();
 		
+//		Provincia prov9 = new Provincia(0, "Buenos Aires");
+//		Pais pais9 = new Pais(0, "Afganistan");
+//		Provincia prov10 = new Provincia(1, "Catamarca");
+//		Pais pais10 = new Pais(1, "Albania");
+//		Provincia prov3 = new Provincia(2, "Chaco");
+//		Pais pais3 = new Pais(2, "Alemania");
+//		Provincia prov4 = new Provincia(3, "Chubut");
+//		Pais pais4 = new Pais(3, "Andorra");
+//		Provincia prov5 = new Provincia(4, "Cordoba");
+//		Pais pais5 = new Pais(4, "Angola");
+//		Provincia prov6 = new Provincia(5, "Corrientes");
+//		Pais pais6 = new Pais(5, "Antigua y Barbuda");
+//		Provincia prov7 = new Provincia(6, "Entre rios");
+//		Pais pais7 = new Pais(6, "Arabia saudita");
+//		Provincia prov8 = new Provincia(7, "Formosa");
+//		Pais pais8 = new Pais(7, "Argelia");
+//		Provincia prov11 = new Provincia(8, "Jujuy");
+//		Pais pais11 = new Pais(8, "Argentina");
+		
+//		Aeropuerto AE13 = new Aeropuerto(0, "Buenos Aires", "AER", pais11, prov9, null);
+//		Aeropuerto AE14 = new Aeropuerto(1, "Catamarca", "CAT", pais11, prov10, null);
+//		Aeropuerto AE15 = new Aeropuerto(2, "Chaco", "CHA", pais11, prov3, null);
+//		Aeropuerto AE16 = new Aeropuerto(3, "Chubut", "CHU", pais11, prov4, null);
+//		Aeropuerto AE17 = new Aeropuerto(4, "Cordoba", "COR", pais11, prov5, null);
+//		Aeropuerto AE18 = new Aeropuerto(5, "Corrientes", "CRR", pais11, prov6, null);
+//		Aeropuerto AE19 = new Aeropuerto(6, "Entre Rios", "ENR", pais11, prov7, null);
+//		Aeropuerto AE20 = new Aeropuerto(7, "Formosa", "FOR", pais11, prov8, null);
+//		Aeropuerto AE21 = new Aeropuerto(8, "Jujuy", "JUJ", pais11, prov11, null);
+		
+		
 //		try {
-//			aero.crearAeropuerto(AE11);
-//			aero.crearAeropuerto(AE12);
+//			aero.crearAeropuerto(AE13);
+//			aero.crearAeropuerto(AE14);
+//			aero.crearAeropuerto(AE15);
+//			aero.crearAeropuerto(AE16);
+//			aero.crearAeropuerto(AE17);
+//			aero.crearAeropuerto(AE18);
+//			aero.crearAeropuerto(AE19);
+//			aero.crearAeropuerto(AE20);
 //			aero.crearAeropuerto(AE21);
-//			aero.crearAeropuerto(AE22);
+//		} catch (ClassNotFoundException | SQLException | IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		
+//		try {
+//			try {
+//				aero.actualizarAeropuerto(AE11);
+//			} catch (ClassNotFoundException | SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 //		} catch (IOException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 		
 //		try {
-//			aero.actualizarAeropuerto(AE22);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-//		try {
-//			aero.eliminarAeropuerto(AE21);
+//			try {
+//				aero.eliminarAeropuerto(0);
+//				aero.eliminarAeropuerto(1);
+//				aero.eliminarAeropuerto(2);
+//				aero.eliminarAeropuerto(3);
+//				aero.eliminarAeropuerto(4);
+//				aero.eliminarAeropuerto(5);
+//				aero.eliminarAeropuerto(6);
+//				aero.eliminarAeropuerto(7);
+//			} catch (ClassNotFoundException | SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 //		} catch (IOException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -266,20 +370,21 @@ public static void main(String[] args) {
 //		}
 		
 		
+
 //		try {
 //			List<Aeropuerto> aa = aero.obtenerAeropuertos();
 //			for(Aeropuerto a : aa) {
 //				System.out.println(a.toString());
-//			}
-//		} catch (IOException e) {
+//				}
+//			} catch (ClassNotFoundException | SQLException | IOException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
-//		}
-		
+//			}
+
 		
 		//----------------------------------PARTE STRING----------------------------------------
 		
-//		ProvinciaDAO prov = new ProvinciaDAOImplementacionString();
+		ProvinciaDAO prov = new ProvinciaDAOImplementacionString();
 //		PaisDAO pa = new PaisDAOImplementacionString();
 //		AlianzasDAO al =new AlianzasDAOImplementacionString();
 		
@@ -289,7 +394,7 @@ public static void main(String[] args) {
 //			while(valor.hasMoreElements()) {
 //				System.out.println("Prov:"+valor.nextElement());
 //			}
-//		} catch (IOException e) {
+//		} catch (IOException | ClassNotFoundException | SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
@@ -301,7 +406,7 @@ public static void main(String[] args) {
 //			while(key.hasMoreElements()) {
 //				System.out.println("Pais: "+key.nextElement());
 //			}
-//		} catch (IOException e) {
+//		} catch (IOException | ClassNotFoundException | SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
@@ -317,6 +422,29 @@ public static void main(String[] args) {
 //		// TODO Auto-generated catch block
 //		e.printStackTrace();
 //	}
+		
+		Formatter fmt = new Formatter();
+		String nomAero = "Manuel Airlines";
+		String palabra;
+		String palabra1;
+		String palabra2;
+		StringTokenizer st = new StringTokenizer(nomAero);
+	
+		
+			while(st.hasMoreTokens()) {
+				palabra = st.nextToken();
+				palabra1 = palabra.substring(0, 1);
+				palabra = st.nextToken();
+				palabra2 = palabra.substring(0, 1);
+				System.out.println(palabra1+""+palabra2);
+			}
+			
+		
+		
+		
+		
+			
+			
 		
 
 		}

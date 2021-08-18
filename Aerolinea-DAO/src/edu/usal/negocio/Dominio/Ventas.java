@@ -11,11 +11,14 @@ public class Ventas implements Serializable{
 	Cliente cliente;
 	Vuelos vuelo;
 	LineasAereas aerolinea;
-	private Calendar fechaYhoraVenta;
+	private Date fechaYhoraVenta;
 	private String formaPago;
+	private int cuotas;
+	private int totAPagar;
 	
-	public Ventas(int idVenta, Cliente cliente, Vuelos vuelo, LineasAereas aerolinea, Calendar fechaYhoraVenta,
-			String formaPago) {
+
+	public Ventas(int idVenta, Cliente cliente, Vuelos vuelo, LineasAereas aerolinea, Date fechaYhoraVenta,
+			String formaPago, int cuotas, int totAPagar) {
 		super();
 		this.idVenta = idVenta;
 		this.cliente = cliente;
@@ -23,7 +26,10 @@ public class Ventas implements Serializable{
 		this.aerolinea = aerolinea;
 		this.fechaYhoraVenta = fechaYhoraVenta;
 		this.formaPago = formaPago;
+		this.cuotas = cuotas;
+		this.totAPagar = totAPagar;
 	}
+
 
 	public Ventas() {
 		super();
@@ -61,11 +67,11 @@ public class Ventas implements Serializable{
 		this.aerolinea = aerolinea;
 	}
 
-	public Calendar getFechaYhoraVenta() {
+	public Date getFechaYhoraVenta() {
 		return fechaYhoraVenta;
 	}
 
-	public void setFechaYhoraVenta(Calendar fechaYhoraVenta) {
+	public void setFechaYhoraVenta(Date fechaYhoraVenta) {
 		this.fechaYhoraVenta = fechaYhoraVenta;
 	}
 
@@ -77,10 +83,27 @@ public class Ventas implements Serializable{
 		this.formaPago = formaPago;
 	}
 
+	public int getCuotas() {
+		return cuotas;
+	}
+
+	public void setCuotas(int cuotas) {
+		this.cuotas = cuotas;
+	}
+
+	public int getTotAPagar() {
+		return totAPagar;
+	}
+
+	public void setTotAPagar(int totAPagar) {
+		this.totAPagar = totAPagar;
+	}
+
 	@Override
 	public String toString() {
 		return "Ventas [idVenta=" + idVenta + ", cliente=" + cliente + ", vuelo=" + vuelo + ", aerolinea=" + aerolinea
-				+ ", fechaYhoraVenta=" + fechaYhoraVenta + ", formaPago=" + formaPago + "]";
+				+ ", fechaYhoraVenta=" + fechaYhoraVenta + ", formaPago=" + formaPago + ", cuotas=" + cuotas
+				+ ", totAPagar=" + totAPagar + "]";
 	}
 
 }

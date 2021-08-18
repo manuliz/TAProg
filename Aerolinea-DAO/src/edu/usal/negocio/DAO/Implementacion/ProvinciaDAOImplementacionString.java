@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +23,12 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 	private File arch;
 	private propertiesUtil properties;
 	private Scanner scan;
-	
+	private FileWriter fwr;
+	private BufferedWriter bwr;
+	private Hashtable<Integer, String> hp = new Hashtable<>();
+	private Enumeration<Integer> cod;
+	private Enumeration<String> nom;
+	private Hashtable<Integer, String> provs = new Hashtable<>();
 
 	public ProvinciaDAOImplementacionString() {
 		this.properties = new propertiesUtil();
@@ -45,12 +51,25 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 
 
 	@Override
-	public void crearProvincia(Provincia prov) {
-		// TODO Auto-generated method stub
+	public void crearProvincia(Provincia prov) throws IOException {
 		
+		provs = this.obtenerProvincias();		
+		this.arch = new File(propertiesUtil.obtenerDirecArchivos(), propertiesUtil.obtenerNomArchProvincias());
+		this.scan = new Scanner(arch);
+		if(!arch.exists()) {
+			arch.createNewFile();
+		} else if(arch.canRead()) {
+			provs.put(prov.getIdProvincia(), prov.getNombreProvincia());
+			cod = provs.keys();
+			nom = provs.elements();
+			String ars[];
+			while(cod.hasMoreElements() || nom.hasMoreElements()) {
+				
+			}
+				
+		}
 	}
-
-
+	
 	@Override
 	public void actualizarProvincia(Provincia prov) {
 		// TODO Auto-generated method stub
@@ -70,5 +89,6 @@ public class ProvinciaDAOImplementacionString implements ProvinciaDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 		
 }

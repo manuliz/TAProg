@@ -21,7 +21,7 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 	PaisDAO pd = new PaisDAOImplementacionSQL();
 	ProvinciaDAO ppd = new ProvinciaDAOImplementacionSQL();
 	
-	public void crearDireccion(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public void crearDireccion(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="INSERT INTO bdaerolinea.direccion VALUES(?,?,?,?,?,?,?)";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -44,7 +44,7 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 			System.out.println("No se pudo crear la direccion!");}
 	}
 	
-	public void actualizarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public void actualizarDireccion(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="UPDATE bdaerolinea.direccion SET idPais=?, idProvincia=?, ciudad=?, calle=?, altura=?, codPostal=? WHERE idDireccion=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -67,7 +67,7 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 			System.out.println("No se pudo actualizar la direccion!");}
 	}
 	
-	public boolean eliminarDireccion(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public boolean eliminarDireccion(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="DELETE FROM bdaerolinea.direccion WHERE idDireccion=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -88,7 +88,7 @@ public class DireccionDAOImplementacionSQL implements DireccionDAO{
 	}
 
 	@Override
-	public Direccion obtenerDireccion(int idDireccion) throws ClassNotFoundException, SQLException {
+	public Direccion obtenerDireccion(int idDireccion, Connection conn, PreparedStatement pstm, ResultSet rst) throws ClassNotFoundException, SQLException {
 		query="SELECT * FROM bdaerolinea.direccion WHERE idDireccion=?";
 		conn=Conexion.obtenerConexion();
 		Direccion direc = new Direccion();

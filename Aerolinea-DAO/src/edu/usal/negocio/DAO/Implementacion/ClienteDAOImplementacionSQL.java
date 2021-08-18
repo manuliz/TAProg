@@ -58,13 +58,13 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 			cli.setIdCliente(rst.getInt(1));
 			cli.setNombreApellido(rst.getString(2));
 			cli.setDni(rst.getString(3));
-			cli.setPasaporte(pd.obtenerPasaporte(rst.getInt(4)));
+			cli.setPasaporte(pd.obtenerPasaporte(rst.getInt(4),conn,pstm,rst));
 			cli.setCuit_cuil(rst.getString(5));
 			cli.setFechaNac(TimestampADate(rst.getTimestamp(6)));
 			cli.seteMail(rst.getString(7));
-			cli.setTelefono(td.obtenerTelefono(rst.getInt(8)));
-			cli.setNumPasajeroFrec(pfd.obtenerPasajeroFrecuente(rst.getInt(9)));
-			cli.setDireccion(dd.obtenerDireccion(rst.getInt(10)));
+			cli.setTelefono(td.obtenerTelefono(rst.getInt(8),conn,pstm,rst));
+			cli.setNumPasajeroFrec(pfd.obtenerPasajeroFrecuente(rst.getInt(9),conn,pstm,rst));
+			cli.setDireccion(dd.obtenerDireccion(rst.getInt(10),conn,pstm,rst));
 		}
 		Conexion.cerrarPrepStatement(pstm);
 		Conexion.cerrarResultSet(rst);
@@ -85,13 +85,13 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 			cli.setIdCliente(rst.getInt(1));
 			cli.setNombreApellido(rst.getString(2));
 			cli.setDni(rst.getString(3));
-			cli.setPasaporte(pd.obtenerPasaporte(rst.getInt(4)));
+			cli.setPasaporte(pd.obtenerPasaporte(rst.getInt(4),conn,pstm,rst));
 			cli.setCuit_cuil(rst.getString(5));
 			cli.setFechaNac(TimestampADate(rst.getTimestamp(6)));
 			cli.seteMail(rst.getString(7));
-			cli.setTelefono(td.obtenerTelefono(rst.getInt(8)));
-			cli.setNumPasajeroFrec(pfd.obtenerPasajeroFrecuente(rst.getInt(9)));
-			cli.setDireccion(dd.obtenerDireccion(rst.getInt(10)));
+			cli.setTelefono(td.obtenerTelefono(rst.getInt(8),conn,pstm,rst));
+			cli.setNumPasajeroFrec(pfd.obtenerPasajeroFrecuente(rst.getInt(9),conn,pstm,rst));
+			cli.setDireccion(dd.obtenerDireccion(rst.getInt(10),conn,pstm,rst));
 			listaCli.add(cli);
 		}
 		Conexion.cerrarResultSet(rst);
@@ -110,16 +110,16 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 		pstm.setInt(1, cliente.getIdCliente());
 		pstm.setString(2,cliente.getNombreApellido());
 		pstm.setString(3, cliente.getDni());
-		pd.crearPasaporte(cliente);
+		pd.crearPasaporte(cliente,conn,pstm);
 		pstm.setInt(4, cliente.getPasaporte().getIdPasaporte());
 		pstm.setString(5, cliente.getCuit_cuil());
 		pstm.setTimestamp(6, DateATimestamp(cliente.getFechaNac()));
 		pstm.setString(7,cliente.geteMail());
-		td.crearTelefono(cliente);
+		td.crearTelefono(cliente,conn,pstm);
 		pstm.setInt(8, cliente.getTelefono().getIdTelefono());
-		pfd.crearPasajeroFrecuente(cliente);
+		pfd.crearPasajeroFrecuente(cliente,conn,pstm);
 		pstm.setInt(9, cliente.getNumPasajeroFrec().getIdPasajeroFrecuente());
-		dd.crearDireccion(cliente);
+		dd.crearDireccion(cliente,conn,pstm);
 		pstm.setInt(10, cliente.getDireccion().getIdDireccion());
 		int pos = pstm.executeUpdate();
 		if(pos==1) {
@@ -143,16 +143,16 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 		pstm=conn.prepareStatement(query);
 		pstm.setInt(1, cliente.getIdCliente());
 		pstm.setString(2, cliente.getNombreApellido());
-		pd.actualizarPasaporte(cliente);
+		pd.actualizarPasaporte(cliente,conn,pstm);
 		pstm.setInt(3, cliente.getPasaporte().getIdPasaporte());
 		pstm.setString(4, cliente.getCuit_cuil());
 		pstm.setTimestamp(5, DateATimestamp(cliente.getFechaNac()));
 		pstm.setString(6, cliente.geteMail());
-		td.actualizarTelefono(cliente);
+		td.actualizarTelefono(cliente,conn,pstm);
 		pstm.setInt(7, cliente.getTelefono().getIdTelefono());
-		pfd.actualizarPasajeroFrecuente(cliente);
+		pfd.actualizarPasajeroFrecuente(cliente,conn,pstm);
 		pstm.setInt(8,cliente.getNumPasajeroFrec().getIdPasajeroFrecuente());
-		dd.actualizarDireccion(cliente);
+		dd.actualizarDireccion(cliente,conn,pstm);
 		pstm.setInt(9, cliente.getDireccion().getIdDireccion());
 		pstm.setString(10, cliente.getDni());
 		int pos = pstm.executeUpdate();
@@ -171,7 +171,7 @@ public class ClienteDAOImplementacionSQL implements ClienteDAO{
 	@Override
 	public boolean eliminarCliente(Cliente cliente) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		if(this.eliminarCliente2(cliente) == true) {
-			if(pd.eliminarPasaporte(cliente) == true && td.eliminarTelefono(cliente) == true && pfd.eliminarPasajeroFrecuente(cliente) == true && dd.eliminarDireccion(cliente) == true) {
+			if(pd.eliminarPasaporte(cliente,conn,pstm) == true && td.eliminarTelefono(cliente,conn,pstm) == true && pfd.eliminarPasajeroFrecuente(cliente,conn,pstm) == true && dd.eliminarDireccion(cliente,conn,pstm) == true) {
 				conn.commit();
 				Conexion.cerrarPrepStatement(pstm);
 				Conexion.cerrarConexion(conn);

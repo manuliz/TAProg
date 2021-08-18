@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,13 +107,13 @@ public class VentasDAOImplementacionStream implements VentasDAO{
 	}
 
 	@Override
-	public void eliminarVenta(Ventas venta) throws FileNotFoundException, IOException {
+	public void eliminarVenta(int id) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		List<Ventas> lista5 = this.obtenerVentas();
 		if(lista5.isEmpty()) {
 			return;
 		}else {
 			for(Ventas a : lista5) {
-				if(a.getIdVenta() == venta.getIdVenta()) {
+				if(a.getIdVenta() == id) {
 					lista5.remove(a);
 					
 					this.guardar(lista5);
@@ -121,7 +122,6 @@ public class VentasDAOImplementacionStream implements VentasDAO{
 			}
 		}
 	}
-	
 	
 
 }

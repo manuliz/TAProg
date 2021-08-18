@@ -12,12 +12,12 @@ import edu.usal.negocio.Dominio.Telefono;
 
 public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 	
-	private Connection conn;
-	private PreparedStatement pstm;
-	private ResultSet rst;
+//	private Connection conn;
+//	private PreparedStatement pstm;
+//	private ResultSet rst;
 	private String query;
 	
-	public Telefono obtenerTelefono(int idTelefono) throws ClassNotFoundException, SQLException {
+	public Telefono obtenerTelefono(int idTelefono, Connection conn, PreparedStatement pstm, ResultSet rst) throws ClassNotFoundException, SQLException {
 		query="Select * FROM bdaerolinea.telefono WHERE idTelefono=?";
 		Telefono tel = new Telefono();
 		conn=Conexion.obtenerConexion();
@@ -35,7 +35,7 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 		return tel;
 	}
 	
-	public void crearTelefono(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public void crearTelefono(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="INSERT INTO bdaerolinea.telefono VALUES(?,?,?,?)";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -55,7 +55,7 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 			System.out.println("No se pudo crear el telefono!");}
 	}
 	
-	public void actualizarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public void actualizarTelefono(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="UPDATE bdaerolinea.telefono SET numCelular=?, numLaboral=?, numPersonal=? WHERE idTelefono=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -75,7 +75,7 @@ public class TelefonoDAOImplementacionSQL implements TelefonoDAO{
 			System.out.println("No se pudo actualizar el telefono!");}
 	}
 	
-	public boolean eliminarTelefono(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public boolean eliminarTelefono(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="DELETE FROM bdaerolinea.telefono WHERE idTelefono=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);

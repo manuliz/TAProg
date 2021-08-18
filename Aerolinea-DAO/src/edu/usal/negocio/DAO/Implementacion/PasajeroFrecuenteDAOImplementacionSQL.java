@@ -17,9 +17,9 @@ import edu.usal.negocio.Dominio.PasajeroFrecuente;
 
 public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteDAO{
 	
-	private Connection conn;
-	private PreparedStatement pstm;
-	private ResultSet rst;
+//	private Connection conn;
+//	private PreparedStatement pstm;
+//	private ResultSet rst;
 	private String query;
 	
 	private String Alianzas1 (Alianzas alianza) {
@@ -32,7 +32,7 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 		return al;
 	}
 	
-	public PasajeroFrecuente obtenerPasajeroFrecuente(int idPasajeroFrecuente) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+	public PasajeroFrecuente obtenerPasajeroFrecuente(int idPasajeroFrecuente, Connection conn, PreparedStatement pstm, ResultSet rst) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		query="SELECT * FROM bdaerolinea.pasajerofrecuente WHERE idPasajeroFrecuente=?";
 		PasajeroFrecuente pf = new PasajeroFrecuente();
 		conn=Conexion.obtenerConexion();
@@ -51,7 +51,7 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 		return pf;
 	}
 	
-	public void crearPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public void crearPasajeroFrecuente(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="INSERT INTO bdaerolinea.pasajerofrecuente VALUES (?,?,?,?,?)";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);
@@ -72,7 +72,7 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 			System.out.println("No se pudo crear el numero de Pasaporte frecuente!");}
 	}
 	
-	public void actualizarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public void actualizarPasajeroFrecuente(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="UPDATE bdaerolinea.pasajeroFrecuente SET numero=?, categoria=?, idAerolinea=?, alianza=? "
 				+ "WHERE idPasajeroFrecuente=?";
 		conn=Conexion.obtenerConexion();
@@ -94,7 +94,7 @@ public class PasajeroFrecuenteDAOImplementacionSQL implements PasajeroFrecuenteD
 			System.out.println("No se pudo actualizar el numero de pasajero frecuente!");}
 	}
 	
-	public boolean eliminarPasajeroFrecuente(Cliente cliente) throws ClassNotFoundException, SQLException {
+	public boolean eliminarPasajeroFrecuente(Cliente cliente, Connection conn, PreparedStatement pstm) throws ClassNotFoundException, SQLException {
 		query="DELETE FROM bdaerolinea.pasajerofrecuente WHERE idPasajeroFrecuente=?";
 		conn=Conexion.obtenerConexion();
 		conn.setAutoCommit(false);

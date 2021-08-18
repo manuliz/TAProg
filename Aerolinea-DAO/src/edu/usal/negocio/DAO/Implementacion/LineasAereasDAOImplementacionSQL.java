@@ -88,7 +88,7 @@ public final class LineasAereasDAOImplementacionSQL implements LineasAereasDAO{
 				vl.setCantDeAsientos(rst2.getInt(3));
 				vl.setTiempoDeVuelo(rst2.getString(4));
 				vl.setLineaAerea(a);
-				String query3 = "SELECT FROM bdaerolinea.aeropuerto WHERE idAeropuerto=?";
+				String query3 = "SELECT * FROM bdaerolinea.aeropuerto WHERE idAeropuerto=?";
 				PreparedStatement pstm3 = conn.prepareStatement(query3);
 				pstm3.setInt(1, rst2.getInt(6));
 				ResultSet rst3 = pstm3.executeQuery();
@@ -97,9 +97,9 @@ public final class LineasAereasDAOImplementacionSQL implements LineasAereasDAO{
 					as.setIdAeropuerto(rst3.getInt(1));
 					as.setCiudad(rst3.getString(2));
 					as.setIdentificacionAeropuerto(rst3.getString(3));
-					String query4 = "SELECT FROM bdaerolinea.pais WHERE idPais=?";
+					String query4 = "SELECT * FROM bdaerolinea.pais WHERE idPais=?";
 					PreparedStatement pstm4 = conn.prepareStatement(query4);
-					pstm3.setInt(1, rst3.getInt(4));
+					pstm4.setInt(1, rst3.getInt(4));
 					ResultSet rst4 = pstm4.executeQuery();
 					while(rst4.next()) {
 						Pais p = new Pais();
@@ -107,7 +107,7 @@ public final class LineasAereasDAOImplementacionSQL implements LineasAereasDAO{
 						p.setNombrePais(rst4.getString(2));
 						as.setPais(p);
 					}
-					String query5 = "SELECT FROM bdaerolinea.provincia WHERE idProvincia=?";
+					String query5 = "SELECT * FROM bdaerolinea.provincia WHERE idProvincia=?";
 					PreparedStatement pstm5 = conn.prepareStatement(query5);
 					pstm5.setInt(1, rst3.getInt(5));
 					ResultSet rst5 = pstm5.executeQuery();
@@ -119,7 +119,7 @@ public final class LineasAereasDAOImplementacionSQL implements LineasAereasDAO{
 					}
 					vl.setAeropuertoSalida(as);
 				}
-				String query6 = "SELECT FROM bdaerolinea.aeropuerto WHERE idAeropuerto=?";
+				String query6 = "SELECT * FROM bdaerolinea.aeropuerto WHERE idAeropuerto=?";
 				PreparedStatement pstm6 = conn.prepareStatement(query6);
 				pstm6.setInt(1, rst2.getInt(7));
 				ResultSet rst6 = pstm6.executeQuery();
@@ -128,7 +128,7 @@ public final class LineasAereasDAOImplementacionSQL implements LineasAereasDAO{
 					al.setIdAeropuerto(rst6.getInt(1));
 					al.setCiudad(rst6.getString(2));
 					al.setIdentificacionAeropuerto(rst6.getString(3));
-					String query7 = "SELECT FROM bdaerolinea.pais WHERE idPais=?";
+					String query7 = "SELECT * FROM bdaerolinea.pais WHERE idPais=?";
 					PreparedStatement pstm7 = conn.prepareStatement(query7);
 					pstm7.setInt(1, rst6.getInt(4));
 					ResultSet rst7 = pstm7.executeQuery();
@@ -138,7 +138,7 @@ public final class LineasAereasDAOImplementacionSQL implements LineasAereasDAO{
 						p.setNombrePais(rst7.getString(2));
 						al.setPais(p);
 					}
-					String query8 = "SELECT FROM bdaerolinea.provincia WHERE idProvincia=?";
+					String query8 = "SELECT * FROM bdaerolinea.provincia WHERE idProvincia=?";
 					PreparedStatement pstm8 = conn.prepareStatement(query8);
 					pstm8.setInt(1, rst6.getInt(5));
 					ResultSet rst8 = pstm8.executeQuery();

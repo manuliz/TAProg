@@ -12,7 +12,7 @@ public interface ProvinciaDAO {
 	
 	public Hashtable<Integer, String> obtenerProvincias() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException;;
 	Provincia obtenerProvincia(int idProvincia) throws ClassNotFoundException, SQLException;
-	void crearProvincia(Provincia prov) throws ClassNotFoundException, SQLException;
+	void crearProvincia(Provincia prov) throws ClassNotFoundException, SQLException, IOException;
 	void actualizarProvincia(Provincia prov) throws ClassNotFoundException, SQLException;
 	void eliminarProvincia(int idProvincia) throws ClassNotFoundException, SQLException;
 	
